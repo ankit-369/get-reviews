@@ -29,5 +29,5 @@ A powerful and easy-to-use platform for collecting, managing, and displaying cus
     npm run dev
 
 
-##Connect with me
+## **Connect with me:**
 Feel free to reach out on [Twitter](https://twitter.com/_x_ankit)
