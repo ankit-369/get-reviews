@@ -1,0 +1,110 @@
+import { Next_Auth } from '@/app/lib/auth';
+import { CollectionType, PrismaClient, Theme } from '@prisma/client';
+import { getServerSession } from 'next-auth/next';
+import { NextRequest, NextResponse } from 'next/server';
+import { mkdir, writeFile } from 'fs/promises';
+import path from 'path';
+
+const prisma = new PrismaClient();
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+
+export async function POST(req: NextRequest) {
+  const session = await getServerSession(Next_Auth);
+
+  if (!session) {
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  }
+
+  const uploadDir = path.join(process.cwd(), 'public', 'user', 'createspace');
+
+  // Ensure the upload directory exists
+  try {
+    await mkdir(uploadDir, { recursive: true });
+  } catch (error) {
+    console.error('Error creating upload directory:', error);
+    return NextResponse.json({ message: 'Server error' }, { status: 500 });
+  }
+
+  try {
+    const formData = await req.formData();
+
+    const checkspacename = await prisma.space.findUnique({
+      where:{
+        spaceName: formData.get('spaceName') as string 
+      }
+    })
+    if(checkspacename){
+      return NextResponse.json({ message: `spacename already exixts` }, { status: 400 });
+    }
+    const requiredFields = ['spaceName', 'title', 'description', 'theme', 'collectiontype'];
+    for (const field of requiredFields) {
+      if (!formData.get(field)) {
+        return NextResponse.json({ message: `required ${field} field` }, { status: 400 });
+      }
+    }
+
+    
+    const spaceData: Record<string, string> = {
+      spaceName: formData.get('spaceName') as string || '',
+      title: formData.get('title') as string || '',
+      description: formData.get('description') as string || '',
+      question1: formData.get('question1') as string || '',
+      question2: formData.get('question2') as string || '',
+      question3: formData.get('question3') as string || '',
+      theme: formData.get('theme') as string || '',
+      logo: '',
+      collectiontype : formData.get('collectiontype') as string || '',
+    };
+
+    const finalspacename = spaceData.spaceName.trim().replace(/\s+/g, '-');
+
+
+    const logoFile = formData.get('logo') as File | null;
+    if (logoFile) {
+      const buffer = Buffer.from(await logoFile.arrayBuffer());
+      const filename = `logo-${Date.now()}${path.extname(logoFile.name)}`;
+      const filepath = path.join(uploadDir, filename);
+      
+      await writeFile(filepath, buffer);
+      spaceData.logo = `/user/createspace/${filename}`;
+    }else{
+      return NextResponse.json({ message: `logo required` }, { status: 400 });
+
+    }
+
+    console.log("\n\n\n\nthis is spacedata "+ JSON.stringify(spaceData));
+    // Here save spaceData to your database using Prisma
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    if(spaceData){
+
+        const newSpace = await prisma.space.create({
+            data:{
+                userId : Number(session.user.id),
+                spaceName : finalspacename,
+                title: spaceData.title,
+                description : spaceData.description,
+                image : spaceData.logo,
+                question1:spaceData.question1,
+                question2:spaceData.question2,
+                question3:spaceData.question3,
+                theme : spaceData.theme as Theme,
+                collectionType : spaceData.collectiontype as CollectionType,
+                createdAt: currentTime
+
+            }
+        });
+    }
+
+    return NextResponse.json({ message: 'Space created successfully', data: spaceData }, { status: 200 });
+  } catch (error) {
+    console.error('Error processing request:', error);
+    return NextResponse.json({ message: 'Error creating space' }, { status: 500 });
+  }
+}

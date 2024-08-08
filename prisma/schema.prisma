@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model user{
+  id Int @id @default(autoincrement())
+  email String  @unique
+  password String?
+  name  String?
+  image String?
+  googleId  String?   
+  createdAt    Int? @default(0)
+  updatedAt    Int?
+
+}
+
+model Space {
+  id            Int      @id @default(autoincrement())
+  userId        Int
+  spaceName     String   @unique
+  title         String?
+  description   String?
+  image         String?
+  question1     String?
+  question2     String?
+  question3     String?
+  theme         Theme
+  collectionType CollectionType
+  createdAt    Int? @default(0)
+  updatedAt    Int?
+
+  @@index([userId])
+
+}
+
+model Review{
+  id        Int      @id @default(autoincrement())
+  spaceId   Int      
+  name      String
+  email     String?
+  photo     String?
+  review    String
+  star      Int
+  permission String
+  heart        String @default("false")
+  createdAt    Int? @default(0)
+  updatedAt    Int?
+
+
+  @@index([spaceId]) 
+  @@index(fields: [spaceId, heart])
+
+}
+
+model Reviewimages{
+    id           Int      @id @default(autoincrement())
+    reviewId     Int      
+    image        String?
+    createdAt    Int? @default(0)
+    updatedAt    Int?
+
+
+    @@index([reviewId])
+
+}
+
+// Enum types
+enum Theme {
+  dark
+  light
+}
+
+enum CollectionType {
+  text
+  video
+}

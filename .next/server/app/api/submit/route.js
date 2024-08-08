@@ -1,0 +1,136 @@
+"use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+(() => {
+var exports = {};
+exports.id = "app/api/submit/route";
+exports.ids = ["app/api/submit/route"];
+exports.modules = {
+
+/***/ "@prisma/client":
+/*!*********************************!*\
+  !*** external "@prisma/client" ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = require("@prisma/client");
+
+/***/ }),
+
+/***/ "next/dist/compiled/next-server/app-page.runtime.dev.js":
+/*!*************************************************************************!*\
+  !*** external "next/dist/compiled/next-server/app-page.runtime.dev.js" ***!
+  \*************************************************************************/
+/***/ ((module) => {
+
+module.exports = require("next/dist/compiled/next-server/app-page.runtime.dev.js");
+
+/***/ }),
+
+/***/ "next/dist/compiled/next-server/app-route.runtime.dev.js":
+/*!**************************************************************************!*\
+  !*** external "next/dist/compiled/next-server/app-route.runtime.dev.js" ***!
+  \**************************************************************************/
+/***/ ((module) => {
+
+module.exports = require("next/dist/compiled/next-server/app-route.runtime.dev.js");
+
+/***/ }),
+
+/***/ "assert":
+/*!*************************!*\
+  !*** external "assert" ***!
+  \*************************/
+/***/ ((module) => {
+
+module.exports = require("assert");
+
+/***/ }),
+
+/***/ "constants":
+/*!****************************!*\
+  !*** external "constants" ***!
+  \****************************/
+/***/ ((module) => {
+
+module.exports = require("constants");
+
+/***/ }),
+
+/***/ "fs":
+/*!*********************!*\
+  !*** external "fs" ***!
+  \*********************/
+/***/ ((module) => {
+
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ "path":
+/*!***********************!*\
+  !*** external "path" ***!
+  \***********************/
+/***/ ((module) => {
+
+module.exports = require("path");
+
+/***/ }),
+
+/***/ "stream":
+/*!*************************!*\
+  !*** external "stream" ***!
+  \*************************/
+/***/ ((module) => {
+
+module.exports = require("stream");
+
+/***/ }),
+
+/***/ "util":
+/*!***********************!*\
+  !*** external "util" ***!
+  \***********************/
+/***/ ((module) => {
+
+module.exports = require("util");
+
+/***/ }),
+
+/***/ "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fapi%2Fsubmit%2Froute&page=%2Fapi%2Fsubmit%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fsubmit%2Froute.ts&appDir=%2Fhome%2Fankit%2FDesktop%2Ftestimonial%2Fapp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=%2Fhome%2Fankit%2FDesktop%2Ftestimonial&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fapi%2Fsubmit%2Froute&page=%2Fapi%2Fsubmit%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fsubmit%2Froute.ts&appDir=%2Fhome%2Fankit%2FDesktop%2Ftestimonial%2Fapp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=%2Fhome%2Fankit%2FDesktop%2Ftestimonial&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   originalPathname: () => (/* binding */ originalPathname),\n/* harmony export */   patchFetch: () => (/* binding */ patchFetch),\n/* harmony export */   requestAsyncStorage: () => (/* binding */ requestAsyncStorage),\n/* harmony export */   routeModule: () => (/* binding */ routeModule),\n/* harmony export */   serverHooks: () => (/* binding */ serverHooks),\n/* harmony export */   staticGenerationAsyncStorage: () => (/* binding */ staticGenerationAsyncStorage)\n/* harmony export */ });\n/* harmony import */ var next_dist_server_future_route_modules_app_route_module_compiled__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next/dist/server/future/route-modules/app-route/module.compiled */ \"(rsc)/./node_modules/next/dist/server/future/route-modules/app-route/module.compiled.js\");\n/* harmony import */ var next_dist_server_future_route_modules_app_route_module_compiled__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(next_dist_server_future_route_modules_app_route_module_compiled__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var next_dist_server_future_route_kind__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/dist/server/future/route-kind */ \"(rsc)/./node_modules/next/dist/server/future/route-kind.js\");\n/* harmony import */ var next_dist_server_lib_patch_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/dist/server/lib/patch-fetch */ \"(rsc)/./node_modules/next/dist/server/lib/patch-fetch.js\");\n/* harmony import */ var next_dist_server_lib_patch_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_dist_server_lib_patch_fetch__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _home_ankit_Desktop_testimonial_app_api_submit_route_ts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app/api/submit/route.ts */ \"(rsc)/./app/api/submit/route.ts\");\n\n\n\n\n// We inject the nextConfigOutput here so that we can use them in the route\n// module.\nconst nextConfigOutput = \"\"\nconst routeModule = new next_dist_server_future_route_modules_app_route_module_compiled__WEBPACK_IMPORTED_MODULE_0__.AppRouteRouteModule({\n    definition: {\n        kind: next_dist_server_future_route_kind__WEBPACK_IMPORTED_MODULE_1__.RouteKind.APP_ROUTE,\n        page: \"/api/submit/route\",\n        pathname: \"/api/submit\",\n        filename: \"route\",\n        bundlePath: \"app/api/submit/route\"\n    },\n    resolvedPagePath: \"/home/ankit/Desktop/testimonial/app/api/submit/route.ts\",\n    nextConfigOutput,\n    userland: _home_ankit_Desktop_testimonial_app_api_submit_route_ts__WEBPACK_IMPORTED_MODULE_3__\n});\n// Pull out the exports that we need to expose from the module. This should\n// be eliminated when we've moved the other routes to the new format. These\n// are used to hook into the route.\nconst { requestAsyncStorage, staticGenerationAsyncStorage, serverHooks } = routeModule;\nconst originalPathname = \"/api/submit/route\";\nfunction patchFetch() {\n    return (0,next_dist_server_lib_patch_fetch__WEBPACK_IMPORTED_MODULE_2__.patchFetch)({\n        serverHooks,\n        staticGenerationAsyncStorage\n    });\n}\n\n\n//# sourceMappingURL=app-route.js.map//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHJzYykvLi9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2J1aWxkL3dlYnBhY2svbG9hZGVycy9uZXh0LWFwcC1sb2FkZXIuanM/bmFtZT1hcHAlMkZhcGklMkZzdWJtaXQlMkZyb3V0ZSZwYWdlPSUyRmFwaSUyRnN1Ym1pdCUyRnJvdXRlJmFwcFBhdGhzPSZwYWdlUGF0aD1wcml2YXRlLW5leHQtYXBwLWRpciUyRmFwaSUyRnN1Ym1pdCUyRnJvdXRlLnRzJmFwcERpcj0lMkZob21lJTJGYW5raXQlMkZEZXNrdG9wJTJGdGVzdGltb25pYWwlMkZhcHAmcGFnZUV4dGVuc2lvbnM9dHN4JnBhZ2VFeHRlbnNpb25zPXRzJnBhZ2VFeHRlbnNpb25zPWpzeCZwYWdlRXh0ZW5zaW9ucz1qcyZyb290RGlyPSUyRmhvbWUlMkZhbmtpdCUyRkRlc2t0b3AlMkZ0ZXN0aW1vbmlhbCZpc0Rldj10cnVlJnRzY29uZmlnUGF0aD10c2NvbmZpZy5qc29uJmJhc2VQYXRoPSZhc3NldFByZWZpeD0mbmV4dENvbmZpZ091dHB1dD0mcHJlZmVycmVkUmVnaW9uPSZtaWRkbGV3YXJlQ29uZmlnPWUzMCUzRCEiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7O0FBQXNHO0FBQ3ZDO0FBQ2M7QUFDTztBQUNwRjtBQUNBO0FBQ0E7QUFDQSx3QkFBd0IsZ0hBQW1CO0FBQzNDO0FBQ0EsY0FBYyx5RUFBUztBQUN2QjtBQUNBO0FBQ0E7QUFDQTtBQUNBLEtBQUs7QUFDTDtBQUNBO0FBQ0EsWUFBWTtBQUNaLENBQUM7QUFDRDtBQUNBO0FBQ0E7QUFDQSxRQUFRLGlFQUFpRTtBQUN6RTtBQUNBO0FBQ0EsV0FBVyw0RUFBVztBQUN0QjtBQUNBO0FBQ0EsS0FBSztBQUNMO0FBQ3VIOztBQUV2SCIsInNvdXJjZXMiOlsid2VicGFjazovL3Rlc3RpbW9uaWFsLz84NjIyIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEFwcFJvdXRlUm91dGVNb2R1bGUgfSBmcm9tIFwibmV4dC9kaXN0L3NlcnZlci9mdXR1cmUvcm91dGUtbW9kdWxlcy9hcHAtcm91dGUvbW9kdWxlLmNvbXBpbGVkXCI7XG5pbXBvcnQgeyBSb3V0ZUtpbmQgfSBmcm9tIFwibmV4dC9kaXN0L3NlcnZlci9mdXR1cmUvcm91dGUta2luZFwiO1xuaW1wb3J0IHsgcGF0Y2hGZXRjaCBhcyBfcGF0Y2hGZXRjaCB9IGZyb20gXCJuZXh0L2Rpc3Qvc2VydmVyL2xpYi9wYXRjaC1mZXRjaFwiO1xuaW1wb3J0ICogYXMgdXNlcmxhbmQgZnJvbSBcIi9ob21lL2Fua2l0L0Rlc2t0b3AvdGVzdGltb25pYWwvYXBwL2FwaS9zdWJtaXQvcm91dGUudHNcIjtcbi8vIFdlIGluamVjdCB0aGUgbmV4dENvbmZpZ091dHB1dCBoZXJlIHNvIHRoYXQgd2UgY2FuIHVzZSB0aGVtIGluIHRoZSByb3V0ZVxuLy8gbW9kdWxlLlxuY29uc3QgbmV4dENvbmZpZ091dHB1dCA9IFwiXCJcbmNvbnN0IHJvdXRlTW9kdWxlID0gbmV3IEFwcFJvdXRlUm91dGVNb2R1bGUoe1xuICAgIGRlZmluaXRpb246IHtcbiAgICAgICAga2luZDogUm91dGVLaW5kLkFQUF9ST1VURSxcbiAgICAgICAgcGFnZTogXCIvYXBpL3N1Ym1pdC9yb3V0ZVwiLFxuICAgICAgICBwYXRobmFtZTogXCIvYXBpL3N1Ym1pdFwiLFxuICAgICAgICBmaWxlbmFtZTogXCJyb3V0ZVwiLFxuICAgICAgICBidW5kbGVQYXRoOiBcImFwcC9hcGkvc3VibWl0L3JvdXRlXCJcbiAgICB9LFxuICAgIHJlc29sdmVkUGFnZVBhdGg6IFwiL2hvbWUvYW5raXQvRGVza3RvcC90ZXN0aW1vbmlhbC9hcHAvYXBpL3N1Ym1pdC9yb3V0ZS50c1wiLFxuICAgIG5leHRDb25maWdPdXRwdXQsXG4gICAgdXNlcmxhbmRcbn0pO1xuLy8gUHVsbCBvdXQgdGhlIGV4cG9ydHMgdGhhdCB3ZSBuZWVkIHRvIGV4cG9zZSBmcm9tIHRoZSBtb2R1bGUuIFRoaXMgc2hvdWxkXG4vLyBiZSBlbGltaW5hdGVkIHdoZW4gd2UndmUgbW92ZWQgdGhlIG90aGVyIHJvdXRlcyB0byB0aGUgbmV3IGZvcm1hdC4gVGhlc2Vcbi8vIGFyZSB1c2VkIHRvIGhvb2sgaW50byB0aGUgcm91dGUuXG5jb25zdCB7IHJlcXVlc3RBc3luY1N0b3JhZ2UsIHN0YXRpY0dlbmVyYXRpb25Bc3luY1N0b3JhZ2UsIHNlcnZlckhvb2tzIH0gPSByb3V0ZU1vZHVsZTtcbmNvbnN0IG9yaWdpbmFsUGF0aG5hbWUgPSBcIi9hcGkvc3VibWl0L3JvdXRlXCI7XG5mdW5jdGlvbiBwYXRjaEZldGNoKCkge1xuICAgIHJldHVybiBfcGF0Y2hGZXRjaCh7XG4gICAgICAgIHNlcnZlckhvb2tzLFxuICAgICAgICBzdGF0aWNHZW5lcmF0aW9uQXN5bmNTdG9yYWdlXG4gICAgfSk7XG59XG5leHBvcnQgeyByb3V0ZU1vZHVsZSwgcmVxdWVzdEFzeW5jU3RvcmFnZSwgc3RhdGljR2VuZXJhdGlvbkFzeW5jU3RvcmFnZSwgc2VydmVySG9va3MsIG9yaWdpbmFsUGF0aG5hbWUsIHBhdGNoRmV0Y2gsICB9O1xuXG4vLyMgc291cmNlTWFwcGluZ1VSTD1hcHAtcm91dGUuanMubWFwIl0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fapi%2Fsubmit%2Froute&page=%2Fapi%2Fsubmit%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fsubmit%2Froute.ts&appDir=%2Fhome%2Fankit%2FDesktop%2Ftestimonial%2Fapp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=%2Fhome%2Fankit%2FDesktop%2Ftestimonial&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!\n");
+
+/***/ }),
+
+/***/ "(rsc)/./app/api/submit/route.ts":
+/*!*********************************!*\
+  !*** ./app/api/submit/route.ts ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   POST: () => (/* binding */ POST),\n/* harmony export */   config: () => (/* binding */ config)\n/* harmony export */ });\n/* harmony import */ var next_server__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next/server */ \"(rsc)/./node_modules/next/dist/api/server.js\");\n/* harmony import */ var fs_extra__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! fs-extra */ \"(rsc)/./node_modules/fs-extra/lib/index.js\");\n/* harmony import */ var fs_extra__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(fs_extra__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @prisma/client */ \"@prisma/client\");\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_prisma_client__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\nconst prisma = new _prisma_client__WEBPACK_IMPORTED_MODULE_2__.PrismaClient();\nconst config = {\n    api: {\n        bodyParser: false\n    }\n};\nasync function POST(req) {\n    try {\n        const formData = await req.formData();\n        // Process form fields\n        const spaceid = formData.get(\"spaceid\") || \"\";\n        const name = formData.get(\"name\") || \"\";\n        const email = formData.get(\"email\") || \"\";\n        const rating = formData.get(\"rating\") || \"0\";\n        const testimonial = formData.get(\"testimonial\") || \"\";\n        const permission = formData.get(\"permission\") || \"false\";\n        // Process images\n        const imagePaths = [];\n        const images = formData.getAll(\"images\");\n        console.log(\"Images:\", images); // Debugging\n        for (const image of images){\n            if (image && typeof image === \"object\" && \"arrayBuffer\" in image) {\n                const buffer = await image.arrayBuffer();\n                // const filename = `${Date.now()}-${(image as any).name}`;\n                const filename = `reviewimage-${Date.now()}${path__WEBPACK_IMPORTED_MODULE_1___default().extname(image.name)}`;\n                const filepath = path__WEBPACK_IMPORTED_MODULE_1___default().join(process.cwd(), \"public\", \"reviewimage\", filename);\n                await fs_extra__WEBPACK_IMPORTED_MODULE_3___default().outputFile(filepath, Buffer.from(buffer));\n                imagePaths.push(`/reviewimage/${filename}`);\n            } else {\n                console.log(\"Not a file:\", image); // Debugging\n            }\n        }\n        // Process photo\n        let photoPath = \"\";\n        const photo = formData.get(\"photo\");\n        if (photo && typeof photo === \"object\" && \"arrayBuffer\" in photo) {\n            const buffer = await photo.arrayBuffer();\n            // const filename = `${Date.now()}-${(photo as any).name}`;\n            const filename = `photo-${Date.now()}${path__WEBPACK_IMPORTED_MODULE_1___default().extname(photo.name)}`;\n            const filepath = path__WEBPACK_IMPORTED_MODULE_1___default().join(process.cwd(), \"public\", \"customer\", filename);\n            await fs_extra__WEBPACK_IMPORTED_MODULE_3___default().outputFile(filepath, Buffer.from(buffer));\n            photoPath = `/customer/${filename}`;\n        }\n        console.log(\"Form Data:\", Object.fromEntries(formData)); // Debugging\n        const result = await prisma.$transaction(async (prisma)=>{\n            const currentTime = Math.floor(Date.now() / 1000);\n            const incertreview = await prisma.review.create({\n                data: {\n                    spaceId: Number(spaceid),\n                    name,\n                    email,\n                    star: Number(rating),\n                    review: testimonial,\n                    permission: permission,\n                    photo: photoPath,\n                    createdAt: currentTime\n                }\n            });\n            const recent_added_id = incertreview.id;\n            for (const image of imagePaths){\n                const add_image = await prisma.reviewimages.create({\n                    data: {\n                        reviewId: recent_added_id,\n                        image,\n                        createdAt: currentTime\n                    }\n                });\n            }\n            return incertreview;\n        });\n        return next_server__WEBPACK_IMPORTED_MODULE_0__.NextResponse.json({\n            message: \"Form submitted successfully\",\n            data: result\n        });\n    } catch (error) {\n        console.error(\"Error processing form:\", error);\n        return next_server__WEBPACK_IMPORTED_MODULE_0__.NextResponse.json({\n            error: \"Error processing form data\"\n        }, {\n            status: 500\n        });\n    } finally{\n        await prisma.$disconnect();\n    }\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,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QUNGO1lBQ0EsTUFBTVcsa0JBQWtCUixhQUFhUyxFQUFFO1lBRXZDLEtBQUssTUFBTWpDLFNBQVNMLFdBQVk7Z0JBQzlCLE1BQU11QyxZQUFZLE1BQU1yRCxPQUFPc0QsWUFBWSxDQUFDVCxNQUFNLENBQUM7b0JBQ2pEQyxNQUFNO3dCQUNKUyxVQUFVSjt3QkFDVmhDO3dCQUNBK0IsV0FBV1Y7b0JBR2I7Z0JBQ0Y7WUFDRjtZQUVBLE9BQU9HO1FBQ1Q7UUFJQSxPQUFPL0MscURBQVlBLENBQUM0RCxJQUFJLENBQUM7WUFDdkJDLFNBQVM7WUFDVFgsTUFBTVI7UUFDUjtJQUNGLEVBQUUsT0FBT29CLE9BQU87UUFDZHpDLFFBQVF5QyxLQUFLLENBQUMsMEJBQTBCQTtRQUN4QyxPQUFPOUQscURBQVlBLENBQUM0RCxJQUFJLENBQUM7WUFBRUUsT0FBTztRQUE2QixHQUFHO1lBQUVDLFFBQVE7UUFBSTtJQUNsRixTQUFTO1FBQ1AsTUFBTTNELE9BQU80RCxXQUFXO0lBQzFCO0FBQ0YiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly90ZXN0aW1vbmlhbC8uL2FwcC9hcGkvc3VibWl0L3JvdXRlLnRzPzZiZTAiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTmV4dFJlcXVlc3QsIE5leHRSZXNwb25zZSB9IGZyb20gJ25leHQvc2VydmVyJztcbmltcG9ydCBmcyBmcm9tICdmcy1leHRyYSc7XG5pbXBvcnQgcGF0aCBmcm9tICdwYXRoJztcbmltcG9ydCB7IFByaXNtYSwgUHJpc21hQ2xpZW50IH0gZnJvbSAnQHByaXNtYS9jbGllbnQnO1xuXG5jb25zdCBwcmlzbWEgPSBuZXcgUHJpc21hQ2xpZW50KCk7XG5cbmV4cG9ydCBjb25zdCBjb25maWcgPSB7XG4gIGFwaToge1xuICAgIGJvZHlQYXJzZXI6IGZhbHNlLFxuICB9LFxufTtcblxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIFBPU1QocmVxOiBOZXh0UmVxdWVzdCkge1xuICB0cnkge1xuICAgIGNvbnN0IGZvcm1EYXRhID0gYXdhaXQgcmVxLmZvcm1EYXRhKCk7XG5cbiAgICAvLyBQcm9jZXNzIGZvcm0gZmllbGRzXG4gICAgY29uc3Qgc3BhY2VpZCA9IGZvcm1EYXRhLmdldCgnc3BhY2VpZCcpIGFzIHN0cmluZyB8fCAnJztcbiAgICBjb25zdCBuYW1lID0gZm9ybURhdGEuZ2V0KCduYW1lJykgYXMgc3RyaW5nIHx8ICcnO1xuICAgIGNvbnN0IGVtYWlsID0gZm9ybURhdGEuZ2V0KCdlbWFpbCcpIGFzIHN0cmluZyB8fCAnJztcbiAgICBjb25zdCByYXRpbmcgPSBmb3JtRGF0YS5nZXQoJ3JhdGluZycpIGFzIHN0cmluZyB8fCAnMCc7XG4gICAgY29uc3QgdGVzdGltb25pYWwgPSBmb3JtRGF0YS5nZXQoJ3Rlc3RpbW9uaWFsJykgYXMgc3RyaW5nIHx8ICcnO1xuICAgIGNvbnN0IHBlcm1pc3Npb24gPSBmb3JtRGF0YS5nZXQoJ3Blcm1pc3Npb24nKSBhcyBzdHJpbmcgfHwgJ2ZhbHNlJztcblxuICAgIC8vIFByb2Nlc3MgaW1hZ2VzXG4gICAgY29uc3QgaW1hZ2VQYXRoczogc3RyaW5nW10gPSBbXTtcbiAgICBjb25zdCBpbWFnZXMgPSBmb3JtRGF0YS5nZXRBbGwoJ2ltYWdlcycpO1xuXG4gICAgY29uc29sZS5sb2coJ0ltYWdlczonLCBpbWFnZXMpOyAvLyBEZWJ1Z2dpbmdcblxuICAgIGZvciAoY29uc3QgaW1hZ2Ugb2YgaW1hZ2VzKSB7XG4gICAgICBpZiAoaW1hZ2UgJiYgdHlwZW9mIGltYWdlID09PSAnb2JqZWN0JyAmJiAnYXJyYXlCdWZmZXInIGluIGltYWdlKSB7XG4gICAgICAgIGNvbnN0IGJ1ZmZlciA9IGF3YWl0IChpbWFnZSBhcyB1bmtub3duIGFzIEJsb2IpLmFycmF5QnVmZmVyKCk7XG4gICAgICAgIC8vIGNvbnN0IGZpbGVuYW1lID0gYCR7RGF0ZS5ub3coKX0tJHsoaW1hZ2UgYXMgYW55KS5uYW1lfWA7XG4gICAgICAgIGNvbnN0IGZpbGVuYW1lID0gYHJldmlld2ltYWdlLSR7RGF0ZS5ub3coKX0ke3BhdGguZXh0bmFtZShpbWFnZS5uYW1lKX1gO1xuXG4gICAgICAgIGNvbnN0IGZpbGVwYXRoID0gcGF0aC5qb2luKHByb2Nlc3MuY3dkKCksICdwdWJsaWMnLCAncmV2aWV3aW1hZ2UnLCBmaWxlbmFtZSk7XG4gICAgICAgIGF3YWl0IGZzLm91dHB1dEZpbGUoZmlsZXBhdGgsIEJ1ZmZlci5mcm9tKGJ1ZmZlcikpO1xuICAgICAgICBpbWFnZVBhdGhzLnB1c2goYC9yZXZpZXdpbWFnZS8ke2ZpbGVuYW1lfWApO1xuICAgICAgfSBlbHNlIHtcbiAgICAgICAgY29uc29sZS5sb2coJ05vdCBhIGZpbGU6JywgaW1hZ2UpOyAvLyBEZWJ1Z2dpbmdcbiAgICAgIH1cbiAgICB9XG5cbiAgICAvLyBQcm9jZXNzIHBob3RvXG4gICAgbGV0IHBob3RvUGF0aCA9ICcnO1xuICAgIGNvbnN0IHBob3RvID0gZm9ybURhdGEuZ2V0KCdwaG90bycpO1xuICAgIGlmIChwaG90byAmJiB0eXBlb2YgcGhvdG8gPT09ICdvYmplY3QnICYmICdhcnJheUJ1ZmZlcicgaW4gcGhvdG8pIHtcbiAgICAgIGNvbnN0IGJ1ZmZlciA9IGF3YWl0IChwaG90byBhcyB1bmtub3duIGFzIEJsb2IpLmFycmF5QnVmZmVyKCk7XG4gICAgICAvLyBjb25zdCBmaWxlbmFtZSA9IGAke0RhdGUubm93KCl9LSR7KHBob3RvIGFzIGFueSkubmFtZX1gO1xuICAgICAgY29uc3QgZmlsZW5hbWUgPSBgcGhvdG8tJHtEYXRlLm5vdygpfSR7cGF0aC5leHRuYW1lKHBob3RvLm5hbWUpfWA7XG5cbiAgICAgIGNvbnN0IGZpbGVwYXRoID0gcGF0aC5qb2luKHByb2Nlc3MuY3dkKCksICdwdWJsaWMnLCAnY3VzdG9tZXInLCBmaWxlbmFtZSk7XG4gICAgICBhd2FpdCBmcy5vdXRwdXRGaWxlKGZpbGVwYXRoLCBCdWZmZXIuZnJvbShidWZmZXIpKTtcbiAgICAgIHBob3RvUGF0aCA9IGAvY3VzdG9tZXIvJHtmaWxlbmFtZX1gO1xuICAgIH1cblxuICAgIGNvbnNvbGUubG9nKCdGb3JtIERhdGE6JywgT2JqZWN0LmZyb21FbnRyaWVzKGZvcm1EYXRhKSk7IC8vIERlYnVnZ2luZ1xuXG4gICAgXG4gICAgY29uc3QgcmVzdWx0ID0gYXdhaXQgcHJpc21hLiR0cmFuc2FjdGlvbihhc3luYyAocHJpc21hKSA9PiB7XG4gICAgICBjb25zdCBjdXJyZW50VGltZSA9IE1hdGguZmxvb3IoRGF0ZS5ub3coKSAvIDEwMDApO1xuICAgICAgY29uc3QgaW5jZXJ0cmV2aWV3ID0gYXdhaXQgcHJpc21hLnJldmlldy5jcmVhdGUoe1xuICAgICAgICBkYXRhOiB7XG4gICAgICAgICAgc3BhY2VJZDogTnVtYmVyKHNwYWNlaWQpLFxuICAgICAgICAgIG5hbWUsXG4gICAgICAgICAgZW1haWwsXG4gICAgICAgICAgc3RhcjogTnVtYmVyKHJhdGluZyksXG4gICAgICAgICAgcmV2aWV3OiB0ZXN0aW1vbmlhbCxcbiAgICAgICAgICBwZXJtaXNzaW9uOiBwZXJtaXNzaW9uLFxuICAgICAgICAgIHBob3RvOiBwaG90b1BhdGgsXG4gICAgICAgICAgY3JlYXRlZEF0OiBjdXJyZW50VGltZVxuXG5cbiAgICAgICAgfVxuICAgICAgfSlcbiAgICAgIGNvbnN0IHJlY2VudF9hZGRlZF9pZCA9IGluY2VydHJldmlldy5pZDtcblxuICAgICAgZm9yIChjb25zdCBpbWFnZSBvZiBpbWFnZVBhdGhzKSB7XG4gICAgICAgIGNvbnN0IGFkZF9pbWFnZSA9IGF3YWl0IHByaXNtYS5yZXZpZXdpbWFnZXMuY3JlYXRlKHtcbiAgICAgICAgICBkYXRhOiB7XG4gICAgICAgICAgICByZXZpZXdJZDogcmVjZW50X2FkZGVkX2lkLFxuICAgICAgICAgICAgaW1hZ2UsXG4gICAgICAgICAgICBjcmVhdGVkQXQ6IGN1cnJlbnRUaW1lXG5cblxuICAgICAgICAgIH1cbiAgICAgICAgfSlcbiAgICAgIH1cblxuICAgICAgcmV0dXJuIGluY2VydHJldmlld1xuICAgIH0pXG5cblxuXG4gICAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHtcbiAgICAgIG1lc3NhZ2U6ICdGb3JtIHN1Ym1pdHRlZCBzdWNjZXNzZnVsbHknLFxuICAgICAgZGF0YTogcmVzdWx0LFxuICAgIH0pO1xuICB9IGNhdGNoIChlcnJvcikge1xuICAgIGNvbnNvbGUuZXJyb3IoJ0Vycm9yIHByb2Nlc3NpbmcgZm9ybTonLCBlcnJvcik7XG4gICAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6ICdFcnJvciBwcm9jZXNzaW5nIGZvcm0gZGF0YScgfSwgeyBzdGF0dXM6IDUwMCB9KTtcbiAgfWZpbmFsbHkge1xuICAgIGF3YWl0IHByaXNtYS4kZGlzY29ubmVjdCgpO1xuICB9XG59Il0sIm5hbWVzIjpbIk5leHRSZXNwb25zZSIsImZzIiwicGF0aCIsIlByaXNtYUNsaWVudCIsInByaXNtYSIsImNvbmZpZyIsImFwaSIsImJvZHlQYXJzZXIiLCJQT1NUIiwicmVxIiwiZm9ybURhdGEiLCJzcGFjZWlkIiwiZ2V0IiwibmFtZSIsImVtYWlsIiwicmF0aW5nIiwidGVzdGltb25pYWwiLCJwZXJtaXNzaW9uIiwiaW1hZ2VQYXRocyIsImltYWdlcyIsImdldEFsbCIsImNvbnNvbGUiLCJsb2ciLCJpbWFnZSIsImJ1ZmZlciIsImFycmF5QnVmZmVyIiwiZmlsZW5hbWUiLCJEYXRlIiwibm93IiwiZXh0bmFtZSIsImZpbGVwYXRoIiwiam9pbiIsInByb2Nlc3MiLCJjd2QiLCJvdXRwdXRGaWxlIiwiQnVmZmVyIiwiZnJvbSIsInB1c2giLCJwaG90b1BhdGgiLCJwaG90byIsIk9iamVjdCIsImZyb21FbnRyaWVzIiwicmVzdWx0IiwiJHRyYW5zYWN0aW9uIiwiY3VycmVudFRpbWUiLCJNYXRoIiwiZmxvb3IiLCJpbmNlcnRyZXZpZXciLCJyZXZpZXciLCJjcmVhdGUiLCJkYXRhIiwic3BhY2VJZCIsIk51bWJlciIsInN0YXIiLCJjcmVhdGVkQXQiLCJyZWNlbnRfYWRkZWRfaWQiLCJpZCIsImFkZF9pbWFnZSIsInJldmlld2ltYWdlcyIsInJldmlld0lkIiwianNvbiIsIm1lc3NhZ2UiLCJlcnJvciIsInN0YXR1cyIsIiRkaXNjb25uZWN0Il0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(rsc)/./app/api/submit/route.ts\n");
+
+/***/ })
+
+};
+;
+
+// load runtime
+var __webpack_require__ = require("../../../webpack-runtime.js");
+__webpack_require__.C(exports);
+var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/next","vendor-chunks/fs-extra","vendor-chunks/graceful-fs","vendor-chunks/jsonfile","vendor-chunks/universalify"], () => (__webpack_exec__("(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fapi%2Fsubmit%2Froute&page=%2Fapi%2Fsubmit%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fsubmit%2Froute.ts&appDir=%2Fhome%2Fankit%2FDesktop%2Ftestimonial%2Fapp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=%2Fhome%2Fankit%2FDesktop%2Ftestimonial&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!")));
+module.exports = __webpack_exports__;
+
+})();
