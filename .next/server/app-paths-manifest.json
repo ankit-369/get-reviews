@@ -1,9 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/user/space/[...space_name]/page": "app/user/space/[...space_name]/page.js",
-  "/user/dashboard/page": "app/user/dashboard/page.js",
-  "/user/createspace/page": "app/user/createspace/page.js",
-  "/testimonial/[...space]/page": "app/testimonial/[...space]/page.js",
-  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js"
-}
