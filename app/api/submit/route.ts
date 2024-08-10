@@ -29,6 +29,18 @@ export async function POST(req: NextRequest) {
 
     console.log('Images:', images); // Debugging
 
+    if(formData.get('permission') === 'false'){
+      return NextResponse.json({ message: `You must agree to the permissions` });
+
+    }
+    const requiredFields = ['name', 'email', 'testimonial'];
+    for (const field of requiredFields) {
+      if (!formData.get(field)) {
+        return NextResponse.json({ message: `required ${field} field` });
+      }
+    }
+
+
     for (const image of images) {
       if (image && typeof image === 'object' && 'arrayBuffer' in image) {
         const buffer = await (image as unknown as Blob).arrayBuffer();

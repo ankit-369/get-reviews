@@ -26,7 +26,6 @@ export async function OPTIONS() {
     return new NextResponse(null, { headers });
 }
 export async function POST(req:NextRequest){
-    let message;
     try {
         const data = await req.json();
         const slug: string = data.name;

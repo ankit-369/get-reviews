@@ -25,7 +25,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-center">
                     <a href="http://localhost:3000" className="relative p-4">
                         <span className="text-2xl font-bold tracking-wide text-white">
-                            GET REVIEWS 
+                        Kudos Vault 
                         </span>
                         <div className="absolute top-3 left-3 w-16 h-16 border-t-4 border-l-4 border-red-500 transform -translate-x-4 -translate-y-4"></div>
                         <div className="absolute bottom-3 right-3 w-16 h-16 border-b-4 border-r-4 border-red-500 transform translate-x-4 translate-y-4"></div>
