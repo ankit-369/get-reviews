@@ -3,6 +3,9 @@ import { Next_Auth } from "@/app/lib/auth";
 import  { RedisClient } from "@/app/lib/redis";
 import { PrismaClient, Theme, CollectionType } from "@prisma/client";
 import { getServerSession } from "next-auth/next";
+import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { fromEnv } from "@aws-sdk/credential-providers";
 
 export interface UserSpace {
     id: number;
@@ -22,7 +25,20 @@ export interface UserSpace {
 
 const prisma = new PrismaClient();
 
-
+const s3Client = new S3Client({
+    region: process.env.AWS_REGION,
+    credentials:fromEnv(),
+  })
+  
+  async function getobjurl(key: any){
+    const command = new GetObjectCommand({
+      Bucket:'kudos-vault',
+      Key:key,
+    })
+    const url =await getSignedUrl(s3Client , command,  { expiresIn: 10 });
+    return url;
+  }
+  
 
 
 
@@ -45,7 +61,7 @@ export async function getspaces(): Promise<UserSpace[]> {
             },
         });
         
-        // console.log("\n\n inside dashboard.ts " + JSON.stringify(spaces));
+        console.log("\n\n inside dashboard.ts " + JSON.stringify(spaces));
 
         // const res25 = await client.json.set(
         //     "ankitt", "$", spaces
@@ -72,7 +88,23 @@ export async function getspaces(): Promise<UserSpace[]> {
         //   }))
         //   : [];
 
-        return spaces;
+        const spacesWithUrls: UserSpace[] = await Promise.all(
+            spaces.map(async (space) => {
+              if (space.image) {
+                try {
+                  const imageUrl = await getobjurl('user/createspace/'+space.image);
+                  return { ...space, image: imageUrl };
+                } catch (error) {
+                  console.error(`Error getting signed URL for image ${space.image}:`, error);
+                  return space; // Return space without the image URL if there's an error
+                }
+              }
+              return space;
+            })
+          );
+        
+          return spacesWithUrls;
+        // return spaces;
 
 
 

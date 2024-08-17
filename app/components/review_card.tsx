@@ -93,7 +93,7 @@ export const Review_card: React.FC<ReviewCardProps> = ({ review, classname }) =>
                         <p className="text-white mb-4">{data.review}</p>
                         <div className="flex mb-4">
                             {data.images?.map((image, index) => (
-                                <img key={index} className="w-20 h-20 object-cover rounded-lg mr-4" src={image} alt={`review-${index}`} />
+                                <img key={index} className="w-20 h-20 object-cover rounded-lg mr-4" src={image ? image : "https://via.placeholder.com/500x300"} alt={`review-${index}`} />
                             ))}
                         </div>
                         <div className="flex items-center mb-2">

@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs-extra';
 import path from 'path';
-import { Prisma, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
+import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { fromEnv } from "@aws-sdk/credential-providers";
 
 const prisma = new PrismaClient();
 
@@ -10,6 +12,27 @@ export const config = {
     bodyParser: false,
   },
 };
+
+
+const s3Client = new S3Client({
+  region: process.env.AWS_REGION,
+  credentials: fromEnv(),
+})
+
+const allowedMimeTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+
+async function putobj(fileroute: any, contentType: any) {
+
+
+
+  const command = new PutObjectCommand({
+    Bucket: 'kudos-vault',
+    Key: fileroute,
+    ContentType: contentType
+  });
+  const url = await getSignedUrl(s3Client, command, { expiresIn: 10 });
+  return url;
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -24,12 +47,8 @@ export async function POST(req: NextRequest) {
     const permission = formData.get('permission') as string || 'false';
 
     // Process images
-    const imagePaths: string[] = [];
-    const images = formData.getAll('images');
 
-    console.log('Images:', images); // Debugging
-
-    if(formData.get('permission') === 'false'){
+    if (formData.get('permission') === 'false') {
       return NextResponse.json({ message: `You must agree to the permissions` });
 
     }
@@ -39,38 +58,70 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ message: `required ${field} field` });
       }
     }
+    const imagePaths: string[] = [];
+    const images = formData.getAll('images') as File[];
+    let filename:string;
+    if (images.length != 0) {
+      for (const image of images) {
+        const contentType = image.type; // Get the MIME type of the file
 
+        if (!allowedMimeTypes.includes(contentType)) {
+          return NextResponse.json({ message: `Wromg image formate \n we allow png , jpg , jpeg only :)` }, { status: 400 });
+        }
+        filename = `logo-${Date.now()}${path.extname(image.name)}`;
+        const coustomer_review = await putobj(`coustomer/reviewimages/${filename}`, contentType);
+        imagePaths.push(filename)
+        // console.log("inside createspace.route.ts" + uploadUrl);
+        // Use the presigned URL to upload the file
+        const response = await fetch(coustomer_review, {
+          method: 'PUT',
+          body: image // The file is uploaded in the body
+        });
 
-    for (const image of images) {
-      if (image && typeof image === 'object' && 'arrayBuffer' in image) {
-        const buffer = await (image as unknown as Blob).arrayBuffer();
-        // const filename = `${Date.now()}-${(image as any).name}`;
-        const filename = `reviewimage-${Date.now()}${path.extname(image.name)}`;
+        if (response.ok) {
+          console.log("coustomer_review uploaded successfully");
+        } else {
+          console.error("Failed to upload coustomer_review", response.statusText);
+          return NextResponse.json({ message: `logo required` }, { status: 400 });
 
-        const filepath = path.join(process.cwd(), 'public', 'reviewimage', filename);
-        await fs.outputFile(filepath, Buffer.from(buffer));
-        imagePaths.push(`/reviewimage/${filename}`);
-      } else {
-        console.log('Not a file:', image); // Debugging
+        }
+
       }
     }
+    console.log('Images:', images); // Debugging
 
-    // Process photo
-    let photoPath = '';
-    const photo = formData.get('photo');
-    if (photo && typeof photo === 'object' && 'arrayBuffer' in photo) {
-      const buffer = await (photo as unknown as Blob).arrayBuffer();
-      // const filename = `${Date.now()}-${(photo as any).name}`;
-      const filename = `photo-${Date.now()}${path.extname(photo.name)}`;
-
-      const filepath = path.join(process.cwd(), 'public', 'customer', filename);
-      await fs.outputFile(filepath, Buffer.from(buffer));
-      photoPath = `/customer/${filename}`;
-    }
-
-    console.log('Form Data:', Object.fromEntries(formData)); // Debugging
 
     
+    const photo = formData.get('photo') as File;
+    let photoname: string;
+    if(photo){
+      const contentType = photo.type; // Get the MIME type of the file
+
+        if (!allowedMimeTypes.includes(contentType)) {
+          return NextResponse.json({ message: `Wromg image formate \n we allow png , jpg , jpeg only :)` }, { status: 400 });
+        }
+        photoname = `photo-${Date.now()}${path.extname(photo.name)}`;
+        const coustomer_image = await putobj(`coustomer/images/${photoname}`, contentType);
+
+        const res = await fetch(coustomer_image,{
+          method:'PUT',
+          body:photo
+
+        })
+
+        if (res.ok) {
+          console.log("coustomer image successfully");
+        } else {
+          console.error("Failed to upload fcoustomer image", res.statusText);
+          return NextResponse.json({ message: `logo required` }, { status: 400 });
+
+        }
+    }
+
+   
+    console.log('Form Data:', Object.fromEntries(formData)); // Debugging
+
+
     const result = await prisma.$transaction(async (prisma) => {
       const currentTime = Math.floor(Date.now() / 1000);
       const incertreview = await prisma.review.create({
@@ -81,7 +132,7 @@ export async function POST(req: NextRequest) {
           star: Number(rating),
           review: testimonial,
           permission: permission,
-          photo: photoPath,
+          photo: photoname,
           createdAt: currentTime
 
 
@@ -113,7 +164,7 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error('Error processing form:', error);
     return NextResponse.json({ error: 'Error processing form data' }, { status: 500 });
-  }finally {
+  } finally {
     await prisma.$disconnect();
   }
 }

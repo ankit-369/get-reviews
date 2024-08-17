@@ -27,7 +27,7 @@ export function Space_card() {
     }, [])
 
 
-    // console.log("\n\n spacedata in dashboard : " + JSON.stringify(spacedata));
+    console.log("\n\n spacedata in dashboard : " + JSON.stringify(spacedata));
 
 
     return (

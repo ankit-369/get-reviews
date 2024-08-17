@@ -2,8 +2,31 @@ import { Next_Auth } from '@/app/lib/auth';
 import { CollectionType, PrismaClient, Theme } from '@prisma/client';
 import { getServerSession } from 'next-auth/next';
 import { NextRequest, NextResponse } from 'next/server';
-import { mkdir, writeFile } from 'fs/promises';
 import path from 'path';
+import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { fromEnv } from "@aws-sdk/credential-providers";
+
+const s3Client = new S3Client({
+  region: process.env.AWS_REGION,
+  credentials: fromEnv(),
+})
+
+const allowedMimeTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+
+async function putobj(filename: any, contentType: any) {
+  
+  
+
+  const command = new PutObjectCommand({
+    Bucket: 'kudos-vault',
+    Key: `user/createspace/${filename}`,
+    ContentType: contentType
+  });
+  const url = await getSignedUrl(s3Client, command, { expiresIn: 10 });
+  return url;
+}
+
 
 const prisma = new PrismaClient();
 
@@ -21,25 +44,18 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
-  const uploadDir = path.join(process.cwd(), 'public', 'user', 'createspace');
 
-  // Ensure the upload directory exists
-  try {
-    await mkdir(uploadDir, { recursive: true });
-  } catch (error) {
-    console.error('Error creating upload directory:', error);
-    return NextResponse.json({ message: 'Server error' }, { status: 500 });
-  }
+
 
   try {
     const formData = await req.formData();
 
     const checkspacename = await prisma.space.findUnique({
-      where:{
-        spaceName: formData.get('spaceName') as string 
+      where: {
+        spaceName: formData.get('spaceName') as string
       }
     })
-    if(checkspacename){
+    if (checkspacename) {
       return NextResponse.json({ message: `spacename already exixts` }, { status: 400 });
     }
     const requiredFields = ['spaceName', 'title', 'description', 'theme', 'collectiontype'];
@@ -49,7 +65,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    
+
     const spaceData: Record<string, string> = {
       spaceName: formData.get('spaceName') as string || '',
       title: formData.get('title') as string || '',
@@ -59,47 +75,65 @@ export async function POST(req: NextRequest) {
       question3: formData.get('question3') as string || '',
       theme: formData.get('theme') as string || '',
       logo: '',
-      collectiontype : formData.get('collectiontype') as string || '',
+      collectiontype: formData.get('collectiontype') as string || '',
     };
 
     const finalspacename = spaceData.spaceName.trim().replace(/\s+/g, '-');
 
 
     const logoFile = formData.get('logo') as File | null;
-    if (logoFile) {
-      const buffer = Buffer.from(await logoFile.arrayBuffer());
-      const filename = `logo-${Date.now()}${path.extname(logoFile.name)}`;
-      const filepath = path.join(uploadDir, filename);
-      
-      await writeFile(filepath, buffer);
-      spaceData.logo = `/user/createspace/${filename}`;
-    }else{
+    // Get the presigned URL
+    if (!logoFile) {
+      console.error("No file selected");
+      return;
+    }
+    const contentType = logoFile.type; // Get the MIME type of the file
+
+    if (!allowedMimeTypes.includes(contentType)) {
+      return NextResponse.json({ message: `Wromg image formate` }, { status: 400 });
+    }
+    const logoname = `logo-${Date.now()}${path.extname(logoFile.name)}`;
+    const uploadUrl = await putobj(logoname, contentType);
+
+    // console.log("inside createspace.route.ts" + uploadUrl);
+    // Use the presigned URL to upload the file
+    const response = await fetch(uploadUrl, {
+      method: 'PUT',
+      body: logoFile // The file is uploaded in the body
+    });
+
+    if (response.ok) {
+      console.log("File uploaded successfully");
+    } else {
+      console.error("Failed to upload file", response.statusText);
       return NextResponse.json({ message: `logo required` }, { status: 400 });
 
     }
 
-    console.log("\n\n\n\nthis is spacedata "+ JSON.stringify(spaceData));
+
+
+    console.log("\n\n\n\nthis is spacedata " + JSON.stringify(spaceData));
     // Here save spaceData to your database using Prisma
     const currentTime = Math.floor(Date.now() / 1000);
 
-    if(spaceData){
+    if (spaceData) {
 
-        const newSpace = await prisma.space.create({
-            data:{
-                userId : Number(session.user.id),
-                spaceName : finalspacename,
-                title: spaceData.title,
-                description : spaceData.description,
-                image : spaceData.logo,
-                question1:spaceData.question1,
-                question2:spaceData.question2,
-                question3:spaceData.question3,
-                theme : spaceData.theme as Theme,
-                collectionType : spaceData.collectiontype as CollectionType,
-                createdAt: currentTime
+      const newSpace = await prisma.space.create({
+        data: {
+          userId: Number(session.user.id),
+          spaceName: finalspacename,
+          title: spaceData.title,
+          description: spaceData.description,
+          image: logoname,
+          question1: spaceData.question1,
+          question2: spaceData.question2,
+          question3: spaceData.question3,
+          theme: spaceData.theme as Theme,
+          collectionType: spaceData.collectiontype as CollectionType,
+          createdAt: currentTime
 
-            }
-        });
+        }
+      });
     }
 
     return NextResponse.json({ message: 'Space created successfully', data: spaceData }, { status: 200 });

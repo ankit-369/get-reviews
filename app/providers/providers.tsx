@@ -15,13 +15,24 @@
 'use client';
 import React, { useEffect } from 'react';
 import { SessionProvider, useSession } from 'next-auth/react';
+import Navbar from '../components/navbar';
+import { Footer } from '../components/footer';
+import { usePathname } from 'next/navigation';
 
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
 
+  const pathname = usePathname()
+
+
   return (
     <SessionProvider >
+      {!pathname.startsWith("/testimonial") && <Navbar/>}
+      
       {children}
+      {!pathname.startsWith("/testimonial") &&  <Footer/>}
+
+     
     </SessionProvider>
   );
 };

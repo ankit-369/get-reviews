@@ -66,6 +66,7 @@ const EditSpace: React.FC = () => {
 
             }
             console.log(response.data);
+
         } catch (error: any) {
             console.error('Error submitting form:', error);
 
@@ -116,39 +117,40 @@ const EditSpace: React.FC = () => {
                 :
                 <div className="container mx-auto flex flex-col md:flex-row gap-6">
                     {/* Preview Section */}
-                    <div className="w-full md:w-1/2 p-6 bg-gray-800 text-white rounded-lg shadow-lg">
-                        <h2 className="text-xl font-bold mb-4">Live preview - Testimonial page</h2>
-                        <div className="space-y-4 text-center mt-10">
-
-                            <div className="relative w-16 h-16 mx-auto rounded-full overflow-hidden">
-                                <Image
-                                    src={formData.logo ? formData.logo : "/user/default.png"}
-                                    alt="Logo"
-                                    // layout="fill"
-                                    fill
-                                    sizes="(max-width: 600px) 100vw, 50vw"
-                                    style={{ objectFit: 'cover' }}
-                                />
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-semibold">{formData.title ? formData.title : "your title goes here"}</h3>
-                                <p className="text-gray-400">{formData.description ? formData.description : "Add description for user"}</p>
-                            </div>
-                            <div className="bg-gray-700 p-4 rounded-lg">
-                                <h4 className="text-lg font-semibold mb-2">QUESTIONS</h4>
-                                <ul className="list-disc list-inside space-y-1">
-                                    <li>{formData.question1 ? formData.question1 : "Who are you / what are you working on?"}</li>
-                                    <li>{formData.question2 ? formData.question2 : "How has [our product / service] helped you?"}</li>
-                                    <li>{formData.question3 ? formData.question3 : "What is the best thing about [our product / service]?"}</li>
-                                </ul>
-                                <div className="mt-4 flex justify-center space-x-2">
-                                    {/* <button className="px-4 py-2 bg-blue-500 text-white rounded-lg">Record a video</button> */}
-                                    <button className="px-4 py-2 bg-gray-600 text-white rounded-lg">Send in text</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    
+                    <div className="w-full md:w-1/2 p-6 bg-gray-900 text-white rounded-lg shadow-2xl transform transition-transform duration-300 hover:scale-105">
+    <h2 className="text-2xl font-bold mb-4 text-center text-blue-400">Live preview - Testimonial page</h2>
+    <div className="space-y-4 text-center mt-6">
+      <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-blue-500">
+        <img
+          src={formData.logo || '/user/default.png'}
+          alt="Logo"
+          style={{
+            objectFit: 'cover',  // Ensures the image covers the container without stretching
+            width: '100%',        // Makes sure the image takes up the full width of the container
+            height: '100%'        // Makes sure the image takes up the full height of the container
+          }}
+        />
+      </div>
+      <div>
+        <h3 className="text-2xl font-semibold text-blue-300">{formData.title || "Your title goes here"}</h3>
+        <p className="text-gray-400 mt-2">{formData.description || "Add description for user"}</p>
+      </div>
+      <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+        
+            <h4 className="text-lg font-semibold mb-4 text-blue-400">QUESTIONS</h4>
+            <ul className="list-disc list-inside space-y-2">
+              <li>{formData.question1 || "Who are you / what are you working on?"}</li>
+              <li>{formData.question2 || "How has [our product / service] helped you?"}</li>
+              <li>{formData.question3 || "What is the best thing about [our product / service]?"}</li>
+            </ul>
+          
+        <div className="mt-6 flex justify-center space-x-4">
+          <button  className="px-4 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-500 transition-colors">Send in text</button>
+        </div>
+      </div>
+    </div>
+  </div>
                     {/* Form Section */}
                     <div className="w-full md:w-1/2 p-6 text-slate-800 bg-white rounded-lg shadow-lg">
                         <h2 className="text-2xl  text-slate-800	 font-bold mb-6">Edit Space</h2>
