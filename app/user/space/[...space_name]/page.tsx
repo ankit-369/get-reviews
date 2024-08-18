@@ -2,6 +2,7 @@
 import { Get_testimonials, GetTestimonialsResponse, Review } from "@/actions/testimoniala";
 import { Integrate } from "@/app/components/code_snipet";
 import Navbar from "@/app/components/navbar";
+import { Redirect_btn } from "@/app/components/redirect_btn";
 import { Review_card } from "@/app/components/review_card";
 import GalaxySpinner from "@/app/components/spinner";
 import { usePathname } from "next/navigation";
@@ -109,9 +110,12 @@ export default function Space() {
               <span className="ml-2 text-gray-400">Text credits: <span className="text-white">10</span></span>
             </div>
           </div> */}
-          <button className="mt-2 bg-blue-600 text-white py-1 px-4 rounded-lg hover:bg-blue-700">
+          {/* <button className="mt-2 bg-blue-600 text-white py-1 px-4 rounded-lg hover:bg-blue-700">
             Edit space
-          </button>
+          </button> */}
+          <span className="">
+            <Redirect_btn classname="mt-2 bg-blue-600 text-white py-1 px-4 rounded-lg hover:bg-blue-700" value="Edit Space" redirect={`/user/editspace/${slug}`} />
+          </span>
         </div>
       </div>
       {/*  */}

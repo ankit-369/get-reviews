@@ -3,7 +3,7 @@ import { Space_card } from "@/app/components/space_card";
 import { Redirect_btn } from "@/app/components/redirect_btn";
 
 
-const Dashboard: React.FC = () => {
+export default function Dashboard()  {
     return (
         <div className="min-h-screen dark:bg-gray-800">
             
@@ -64,7 +64,7 @@ const Dashboard: React.FC = () => {
             {/* Space card */}
 
 
-            <div className="ml-10">
+            <div className="ml-10 mr-10">
                 <Space_card />
             </div>
 
@@ -76,4 +76,3 @@ const Dashboard: React.FC = () => {
         </div>)
 }
 
-export default Dashboard;
