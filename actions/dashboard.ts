@@ -35,7 +35,7 @@ const s3Client = new S3Client({
       Bucket:'kudos-vault',
       Key:key,
     })
-    const url =await getSignedUrl(s3Client , command,  { expiresIn: 10 });
+    const url =await getSignedUrl(s3Client , command,  { expiresIn: 30 });
     return url;
   }
   

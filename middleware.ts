@@ -10,10 +10,11 @@ export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   console.log("this is currect path" + path);
   // const session = await getServerSession(Next_Auth);
-  // console.log('User session in middleware: ', session)
-
+  
   const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET })
+  console.log('User token in middleware: ', token)
 
+  
   const publicPaths = ['/', '/api/auth/signin']; // Add any other public paths
 
   const isPublicPath = publicPaths.includes(path);

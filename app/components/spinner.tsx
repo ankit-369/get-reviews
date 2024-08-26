@@ -11,6 +11,7 @@ const SpinnerContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 100vw;
 `;
 
 const Galaxy = styled.div`

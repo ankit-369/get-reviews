@@ -38,7 +38,7 @@ const s3Client = new S3Client({
       Bucket:'kudos-vault',
       Key:key,
     })
-    const url =await getSignedUrl(s3Client , command,  { expiresIn: 10 });
+    const url =await getSignedUrl(s3Client , command,  { expiresIn: 60 });
     return url;
   }
   
@@ -69,6 +69,7 @@ export async function Get_testimonials(slug: string): Promise<GetTestimonialsRes
         const space_id = space_data.id;
         
         const main_space_image = space_data.image || "";
+        
         const imageUrl = await getobjurl('user/createspace/'+main_space_image);
 
         const review_data = await prisma.$queryRaw<any[]>`
@@ -84,6 +85,14 @@ export async function Get_testimonials(slug: string): Promise<GetTestimonialsRes
             ORDER BY "Review"."id" DESC;
         `;
 
+if (review_data.length === 0) {
+    return {
+        space_image: imageUrl,
+        review_data: [],
+        message: "no testimonial submitted yet",
+    };
+}
+
         async function getfullimageurl(imagename:string[]){
             const img_urls:string[]=[];
             for(const img of imagename){
@@ -97,8 +106,17 @@ export async function Get_testimonials(slug: string): Promise<GetTestimonialsRes
         // Ensure review_data is a plain object
         const plainReviewData: Review[] =await Promise.all(
              review_data.map(async(item: any) => {
-                const review_imageurls = await getfullimageurl(item.images || []);
-                const coustomer_image = await getobjurl('coustomer/images/'+item.photo);
+                let review_imageurls:string[] | undefined  ;
+                if(item.images){
+                    const validImages = item.images.filter((image: null | undefined) => image !== null);
+                    if (validImages.length) {
+                        review_imageurls = await getfullimageurl(validImages);
+                    }
+                }
+                let coustomer_image:string | undefined ;
+                if(item.photo){
+                     coustomer_image = await getobjurl('coustomer/images/'+item.photo);
+                }
                 return{
 
                     id: item.id,
@@ -116,7 +134,7 @@ export async function Get_testimonials(slug: string): Promise<GetTestimonialsRes
                 }
         }));
 
-        console.log("this i splane review data "+JSON.stringify(plainReviewData));
+        // console.log("this is plane review data "+JSON.stringify(plainReviewData));
 
         return {
             review_data: plainReviewData,

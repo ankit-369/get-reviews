@@ -73,7 +73,7 @@ export function Integrate({ classname, slug }: IntegrateProps) {
         </div>
         <div className="relative bg-gray-50 rounded-lg dark:bg-gray-700 p-4" style={{ backgroundColor: '#282C34' }}>
           <div className="">
-            <pre>
+            <pre className='whitespace-pre-wrap hljs'>
               <code dangerouslySetInnerHTML={{ __html: highlightedCode }} />
             </pre>
           </div>
@@ -103,7 +103,7 @@ export function Integrate({ classname, slug }: IntegrateProps) {
             <p className="font-medium text-gray-900 dark:text-white">Set reviews :</p>
           </div>
           <div className="relative bg-gray-50 rounded-lg dark:bg-gray-700 p-4" style={{ backgroundColor: '#282C34' }}>
-            <div className="">
+            <div className="hljs">
               <pre>
                 <code dangerouslySetInnerHTML={{ __html: setreviewsCode }} />
               </pre>

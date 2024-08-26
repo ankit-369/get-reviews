@@ -60,7 +60,8 @@ model Review{
 
 
   @@index([spaceId]) 
-  @@index(fields: [spaceId, heart])
+  @@index([spaceId, heart])
+  @@index([id, spaceId])
 
 }
 
@@ -73,6 +74,7 @@ model Reviewimages{
 
 
     @@index([reviewId])
+  @@index([id, reviewId])
 
 }
 

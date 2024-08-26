@@ -15,10 +15,10 @@ export function Space_card() {
     useEffect(() => {
         async function fetchdata() {
             try {
-                // const response = await axios.get('/api/user/dashboard');
-                const response = await getspaces();
 
+                const response = await getspaces();
                 setspacedata(response);
+                
             } catch (error) {
                 console.error('Error fetching data in deshboard page :', error);
             }
