@@ -30,11 +30,11 @@ async function putobj(filename: any, contentType: any) {
 
 const prisma = new PrismaClient();
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+// export const config = {
+//   api: {
+//     bodyParser: false,
+//   },
+// };
 
 
 export async function POST(req: NextRequest) {

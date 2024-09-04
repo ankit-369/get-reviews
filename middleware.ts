@@ -9,7 +9,6 @@ export async function middleware(request: NextRequest) {
   // Get the pathname of the request (e.g., /, /protected, /admin)
   const path = request.nextUrl.pathname;
   console.log("this is currect path" + path);
-  // const session = await getServerSession(Next_Auth);
   
   const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET })
   console.log('User token in middleware: ', token)

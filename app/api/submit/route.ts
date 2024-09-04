@@ -4,14 +4,15 @@ import { PrismaClient } from '@prisma/client';
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { fromEnv } from "@aws-sdk/credential-providers";
+import { z } from 'zod';
 
 const prisma = new PrismaClient();
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+// export const config = {
+//   api: {
+//     bodyParser: false,
+//   },
+// };
 
 
 const s3Client = new S3Client({
@@ -33,6 +34,9 @@ async function putobj(fileroute: any, contentType: any) {
   const url = await getSignedUrl(s3Client, command, { expiresIn: 10 });
   return url;
 }
+const formDataSchema = z.object({
+  email: z.string().email('Invalid email address'), // Validate that the email is valid
+});
 
 export async function POST(req: NextRequest) {
   try {
@@ -58,6 +62,12 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ message: `required ${field} field` });
       }
     }
+
+    const check_email = formDataSchema.safeParse({ email });
+
+    if(!check_email.success){
+      return NextResponse.json({ message: `Enter Valid Email :)` });
+    }
     const imagePaths: string[] = [];
     const images = formData.getAll('images') as File[];
     let filename:string;
@@ -66,8 +76,14 @@ export async function POST(req: NextRequest) {
         const contentType = image.type; // Get the MIME type of the file
 
         if (!allowedMimeTypes.includes(contentType)) {
-          return NextResponse.json({ message: `Wromg image formate \n we allow png , jpg , jpeg only :)` }, { status: 400 });
+          return NextResponse.json({ message: `Wromg image formate we allow png , jpg , jpeg only :)` });
         }
+
+        const fileSizeMB = image.size / (1024 * 1024); // Convert file size to MB
+        if (fileSizeMB > 3) {
+          return NextResponse.json({ message: 'Image must be less than 3 MB.' });
+        }
+
         filename = `logo-${Date.now()}${path.extname(image.name)}`;
         const coustomer_review = await putobj(`coustomer/reviewimages/${filename}`, contentType);
         imagePaths.push(filename)
@@ -95,10 +111,14 @@ export async function POST(req: NextRequest) {
     const photo = formData.get('photo') as File;
     let photoname: string;
     if(photo){
+      const fileSizeMB = photo.size / (1024 * 1024); // Convert file size to MB
+      if (fileSizeMB > 3) {
+        return NextResponse.json({ message: 'photo must be less than 3 MB.' });
+      }
       const contentType = photo.type; // Get the MIME type of the file
 
         if (!allowedMimeTypes.includes(contentType)) {
-          return NextResponse.json({ message: `Wromg image formate \n we allow png , jpg , jpeg only :)` }, { status: 400 });
+          return NextResponse.json({ message: `Wromg image formate \n we allow png , jpg , jpeg only :)` });
         }
         photoname = `photo-${Date.now()}${path.extname(photo.name)}`;
         const coustomer_image = await putobj(`coustomer/images/${photoname}`, contentType);
@@ -112,8 +132,8 @@ export async function POST(req: NextRequest) {
         if (res.ok) {
           console.log("coustomer image successfully");
         } else {
-          console.error("Failed to upload fcoustomer image", res.statusText);
-          return NextResponse.json({ message: `logo required` }, { status: 400 });
+          console.error("Failed to upload coustomer image", res.statusText);
+          return NextResponse.json({ message: `Failed to upload image` });
 
         }
     }

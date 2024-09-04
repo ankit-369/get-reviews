@@ -1,3 +1,4 @@
+import Image from 'next/image'; // Import next/image at the top
 
 interface param {
     theme: string
@@ -192,10 +193,14 @@ const Dark_ReviewComponent = ({
             <div className="relative flex flex-col items-center text-center">
                 <div className="w-28 h-28 md:w-32 md:h-32 rounded-full border-4 border-gray-500 mb-4 overflow-hidden bg-gray-800 flex items-center justify-center">
                     {photo ? (
-                        <img
+                        <Image
+                            className="w-full h-full object-cover rounded-full"
                             src={photo}
                             alt={name}
-                            className="w-full h-full object-cover rounded-full"
+                            width={0}
+                            height={0}
+                            layout="responsive"
+                        
                         />
                     ) : (
                         <span className="text-5xl font-bold text-gray-400">
@@ -212,16 +217,19 @@ const Dark_ReviewComponent = ({
                 </p>
 
                 <p className="text-gray-300 text-lg italic border-t-4 border-gray-500 pt-4">
-                    "{review}"
+                    &quot;{review}&quot;
                 </p>
 
                 <div className="flex flex-wrap justify-center gap-4 mt-4">
                     {images.length !== 0 ? (
                         images.map((image: string | undefined, index: React.Key | null | undefined) => (
                             <div key={index} className="w-24 h-24 md:w-32 md:h-32 overflow-hidden rounded-lg border border-gray-600 shadow-lg">
-                                <img
-                                    src={image}
+                                <Image
+                                    src={image ? image : ""}              // @ts-ignore
                                     alt={`Review Image ${index + 1}`}
+                                    width={0}
+                                    height={0}
+                                    layout='responsive'
                                     className="w-full h-full object-cover rounded-lg"
                                 />
                             </div>
@@ -296,7 +304,7 @@ const White_ReviewComponent = ({
                 </p>
 
                 <p className="text-gray-800 text-lg italic border-t-4 border-blue-400 pt-4">
-                    "{review}"
+                    &quot{review}&quot
                 </p>
 
                 <div className="flex flex-wrap justify-center gap-4 mt-4">
@@ -304,7 +312,7 @@ const White_ReviewComponent = ({
                         images.map((image: string | undefined, index: React.Key | null | undefined) => (
                             <div key={index} className="w-24 h-24 md:w-32 md:h-32 overflow-hidden rounded-lg border border-gray-300 shadow-md">
                                 <img
-                                    src={image}
+                                    src={image}              // @ts-ignore
                                     alt={`Review Image ${index + 1}`}
                                     className="w-full h-full object-cover rounded-lg"
                                 />

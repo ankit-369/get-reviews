@@ -93,7 +93,7 @@ console.log(review_data);
 
         // Ensure review_data is a plain object
         const plainReviewData: Review[] = await Promise.all(
-            review_data.map(async (item: any) => {
+            review_data.map(async (item: any,index:number) => {
                 let review_imageurls:string[] = [];
                 if(item.images){
                     const validImages = item.images.filter((image: null | undefined) => image !== null);
@@ -107,7 +107,7 @@ console.log(review_data);
                 }
                 return {
 
-                    id: item.id,
+                    id: index + 1,
                     spaceId: item.spaceId,
                     name: item.name,
                     email: item.email,

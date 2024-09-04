@@ -2,6 +2,7 @@ import hljs from 'highlight.js/lib/core';
 import typescript from 'highlight.js/lib/languages/typescript';
 import 'highlight.js/styles/atom-one-dark-reasonable.css';
 import { Key, useState } from 'react';
+import Image from 'next/image'; // Import the Image component
 
 hljs.registerLanguage('typescript', typescript);
 
@@ -29,7 +30,7 @@ export function Integrate({ classname, slug }: IntegrateProps) {
         const res = await axios.post("http://localhost:3000/api/reviews", {
             name: "${slug}"
         });
-        return res.data.review_data;
+        return res.data.plainReviewData;
     } catch (error) {
         console.error("Error fetching reviews:", error);
         return []; // Return an empty array or handle the error as needed
@@ -148,11 +149,26 @@ const ReviewComponent = ({ title, description, images, author, date, rating, aut
       <p className="mt-2 text-gray-600">{description}</p>
       <div className="mt-4 flex space-x-4">
         {images.map((image: string | undefined, index: Key | null | undefined) => (
-          <img key={index} src={image} alt={`Review Image ${index + 1}`} className="w-24 h-24 object-cover rounded-md" />
+            <Image
+            key={index}
+            src={image ? image : ""} 
+            // @ts-ignore
+            alt={`Review Image ${index + 1}`}
+            width={96} // Set width (w-24 is 96px)
+            height={96} // Set height (h-24 is 96px)
+            className="object-cover rounded-md"
+            />
         ))}
       </div>
       <div className="mt-4 flex items-center">
-        <img src={authorImage} alt={author} className="w-12 h-12 rounded-full mr-4" />
+      <Image
+            src={authorImage ? authorImage : ""}
+            alt={author}
+            width={48} // Set width (w-24 is 96px)
+            height={48} // Set height (h-24 is 96px)
+            className="rounded-full mr-4"
+            />
+        {/* <img src={authorImage} alt={author} className="w-12 h-12 rounded-full mr-4" /> */}
         <div>
           <p className="text-gray-800 font-semibold">{author}</p>
           <p className="text-gray-500 text-sm">{date}</p>

@@ -30,11 +30,7 @@ async function putobj(filename: any, contentType: any) {
 
 const prisma = new PrismaClient();
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+
 
 
 export async function POST(req: NextRequest) {
@@ -85,7 +81,7 @@ export async function POST(req: NextRequest) {
     // Get the presigned URL
     if (!logoFile) {
       console.error("No file selected");
-      return;
+      return NextResponse.json({ message: `No logo selected` }, { status: 400 });
     }
     const contentType = logoFile.type; // Get the MIME type of the file
 

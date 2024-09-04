@@ -6,9 +6,9 @@ import { Redirect_btn } from "@/app/components/redirect_btn";
 import { Review_card } from "@/app/components/review_card";
 import GalaxySpinner from "@/app/components/spinner";
 import { Widget } from "@/app/components/widget";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-
 
 
 export default function Space() {
@@ -62,80 +62,75 @@ export default function Space() {
   console.log("Updated reviews state:", reviews);
   console.log("Updated error state:", error);
 
-  // if(error === "no testimonial submitted yet"){
-  //   return(
-  //     <>
-  //     <NoTestimonialsCard/>
-  //     </>
-  //   )
-  // }
-
-
-
 
   return (
     <>
 
-      <div className="flex items-center p-4 bg-gray-800 shadow-md">
-        <div className="xl:ml-10  flex-shrink-0">
-          <img
-            className="w-32 h-32 rounded-full border-2 border-blue-500 object-cover"
-            src={space_image ? space_image : ""} // Replace with your image URL
+      
+      <div className="flex flex-col md:flex-row max-w-[100%] items-center p-6 bg-gray-900 shadow-lg rounded-lg">
+        <div className="flex-shrink-0">
+          <Image
+            className="w-40 h-40 rounded-full border-4 border-gradient-to-r from-blue-400 to-blue-600 object-cover"
+            src={space_image ? space_image : "/default-image.png"} // Default image if none provided
             alt="Space Avatar"
+            width={160}
+            height={160}
+            // layout="responsive"
           />
         </div>
 
-        <div className="ml-4 flex-grow">
-          <div className="flex items-center">
-            <h2 className="text-xl font-semibold text-white">{slug}</h2>
-            <svg
-              className="ml-2 w-5 h-5 text-blue-500"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.536-9.464a1 1 0 10-1.414-1.414L9 10.586l-1.122-1.122a1 1 0 00-1.415 1.415l2 2a1 1 0 001.414 0l4-4z"
-                clipRule="evenodd"
-              />
-            </svg>
+        <div className="ml-6 text-center md:text-start max-w-[50%] flex-grow">
+          <div className="flex flex-col md:flex-row items-center">
+            <div className="flex flex-row">
+
+              <h2 className="text-2xl font-bold text-white">{slug}</h2>
+              <svg
+                className="ml-3 w-6 h-6 text-blue-500"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.536-9.464a1 1 0 10-1.414-1.414L9 10.586l-1.122-1.122a1 1 0 00-1.415 1.415l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
           </div>
-          <p className="text-sm text-gray-400">
-            Space public URL: <a href={"http://localhost:3000/testimonial/" + slug} className="text-blue-400 hover:underline">http://localhost:3000/user/space/{slug}</a>
-          </p>
-          <div className="mt-3 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
-            <span className="font-medium">Note!</span> Refresh the page to see changes.
+          <div className="flex below-900:flex-col  below-900:items-center after-900:flex-row">
+
+            <p className="text-md text-gray-300 mt-2">
+              Space public URL :
+            </p>
+            <a href={`http://localhost:3000/testimonial/${slug}`} className="ml-2 mt-2  text-blue-400 hover:underline">{`http://localhost:3000/user/space/${slug}`}</a>
+          </div>
+          <div className="mt-4 bg-yellow-50 border-l-4 border-yellow-500 text-yellow-800 p-3 rounded-lg dark:bg-gray-800 dark:border-yellow-400 dark:text-yellow-300" role="alert">
+            <span className="font-semibold">Note:</span> Refresh the page to see changes.
           </div>
         </div>
-        <div className="flex flex-col items-end">
-          {/* <div className="flex items-center space-x-4">
-            <div className="flex items-center">
-              <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17 8a4 4 0 11-7.9 1h-4.2a4 4 0 11-7.9-1 4 4 0 117.9-1h4.2A4 4 0 1117 8zM3 8a2 2 0 100-4 2 2 0 000 4zm14 0a2 2 0 100-4 2 2 0 000 4z" />
-              </svg>
-              <span className="ml-2 text-gray-400">Video credits: <span className="text-white">2</span></span>
-            </div>
-            <div className="flex items-center">
-              <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 5a4 4 0 00-4 4v4a4 4 0 004 4h10a4 4 0 004-4V9a4 4 0 00-4-4H5zm8 8H7a1 1 0 110-2h6a1 1 0 110 2zm1-4H6a1 1 0 010-2h8a1 1 0 010 2z" />
-              </svg>
-              <span className="ml-2 text-gray-400">Text credits: <span className="text-white">10</span></span>
-            </div>
-          </div> */}
 
-          <span className="">
-            <Redirect_btn classname="mt-2 bg-blue-600 text-white py-1 px-4 rounded-lg hover:bg-blue-700" value="Edit Space" redirect={`/user/editspace/${slug}`} />
+        <div className="flex flex-col items-end mt-4 md:mt-0 md:ml-auto space-y-4 pr-6">
+          <div className="flex items-center">
+            <span className="text-gray-300">Total reviews: <span className="font-semibold text-white">{reviews.length}</span></span>
+          </div>
+
+          <span>
+            <Redirect_btn
+              classname="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-2 px-6 rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300"
+              value="Edit Space"
+              redirect={`/user/editspace/${slug}`}
+            />
           </span>
         </div>
       </div>
 
-      <div className="p-4 flex flex-col md:flex-row min-h-screen dark:bg-gray-900">
+      <div className="p-4 flex below-900:flex-col after-900:flex-row min-h-screen dark:bg-gray-900 " >
 
         {/* sidebar */}
-        <div id="logo-sidebar" className="xl:ml-10 top-0 left-0 z-40 md:max-w-64 pt-20 transition-transform bg-white border-r border-gray-200 dark:bg-gray-900 dark:border-gray-700">
-          <div className="h-full px-3 pb-4 overflow-y-auto dark:bg-gray-900">
-            <ul className="flex justify-center items-center md:justify-normal md:items-start  flex-row flex-wrap md:flex-col space-x-2 md:space-x-0 md:space-y-2 font-medium">
+        <div id="logo-sidebar" className=" xl:ml-10 sticky	top-0 left-0 z-40 after-900:max-w-64 after-900:pt-20 transition-transform bg-white border-r border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+          <div className="after-900:h-full overflow-hidden px-3 pb-4 overflow-y-auto dark:bg-gray-900">
+            <ul className="flex justify-center items-center below-900:flex-row below-900:space-x-2 flex-col space-y-2 font-medium after-900:justify-normal after-900:items-start after-900:flex-wrap  after-900:space-x-0 after-900:space-y-2">
               <li>
                 <button onClick={() => settab("dashboard")} className={`flex  md:ml-3 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${tab === 'dashboard' ? 'bg-gray-700' : ''}`}>
                   <svg className="w-7 h-7 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
@@ -177,7 +172,7 @@ export default function Space() {
         {/* sidebarend */}
 
         {tab === "integrate" && <Integrate classname="w-full  p-4" slug={slug} />}
-        {tab === "widget" && <Widget classname="w-full md:w-[79%] xl:w-[82%] 2xl:w-[85%] p-4"/>}
+        {tab === "widget" && <Widget classname="w-full md:w-[79%] xl:w-[82%] 2xl:w-[85%] p-4" />}
 
         {reviews.length === 0 && error !== "no testimonial submitted yet" ? (
 
@@ -202,8 +197,8 @@ export default function Space() {
 
       </div>
 
-
     </>
+
   );
 }
 

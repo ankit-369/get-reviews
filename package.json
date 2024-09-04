@@ -29,7 +29,8 @@
     "react": "^18",
     "react-dom": "^18",
     "redis": "^4.7.0",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

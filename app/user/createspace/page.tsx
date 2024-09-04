@@ -6,12 +6,14 @@ import { useRouter } from "next/navigation";
 import Priview from '@/app/components/priview';
 import Form from '@/app/components/space_form';
 import EditSpaceForm from '@/app/components/space_form';
+import GalaxySpinner from '@/app/components/spinner';
 
 
 const EditSpace: React.FC = () => {
     const router = useRouter()
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [errors, seterror] = useState<string | null>(null);
+    const [loading , setloading] = useState(false);
 
     const [formData, setFormData] = useState({
         spaceName: '',
@@ -56,11 +58,13 @@ const EditSpace: React.FC = () => {
         }
 
         try {
+            setloading(true);
             const response = await axios.post('/api/user/createspace', formDataToSend, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
+            setloading(false);
             if (response.data.message === 'Space created successfully') {
                 setShowSuccessMessage(true);
                 setTimeout(() => {
@@ -71,6 +75,8 @@ const EditSpace: React.FC = () => {
             console.log(response.data);
 
         } catch (error: any) {
+            setloading(false);
+
             console.error('Error submitting form:', error);
 
             if (error.response && error.response.data && error.response.data.message) {
@@ -92,7 +98,8 @@ const EditSpace: React.FC = () => {
     return (
         <div className="p-6 bg-gray-100 min-h-screen flex flex-col items-center">
 
-            {showSuccessMessage ?
+{loading ? (<GalaxySpinner />) : 
+            showSuccessMessage ?
 
                 <div id="popup-modal" tabIndex={-1} className="flex justify-center items-center overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-full">
                     <div className="relative p-4 w-full max-w-md max-h-full">
@@ -133,8 +140,10 @@ const EditSpace: React.FC = () => {
                 </div>
 
             }
+
         </div>
     );
 };
+
 
 export default EditSpace;
