@@ -62,6 +62,7 @@ export default function Space() {
   console.log("Updated reviews state:", reviews);
   console.log("Updated error state:", error);
 
+  const nextAuthUrl = process.env.NEXT_PUBLIC_NEXTAUTH_URL;
 
   return (
     <>
@@ -71,7 +72,7 @@ export default function Space() {
         <div className="flex-shrink-0">
           <Image
             className="w-40 h-40 rounded-full border-4 border-gradient-to-r from-blue-400 to-blue-600 object-cover"
-            src={space_image ? space_image : "/default-image.png"} // Default image if none provided
+            src={space_image ? space_image : "/user/default.png"} // Default image if none provided
             alt="Space Avatar"
             width={160}
             height={160}
@@ -103,7 +104,7 @@ export default function Space() {
             <p className="text-md text-gray-300 mt-2">
               Space public URL :
             </p>
-            <a href={`http://localhost:3000/testimonial/${slug}`} className="ml-2 mt-2  text-blue-400 hover:underline">{`http://localhost:3000/user/space/${slug}`}</a>
+            <a href={`${nextAuthUrl}/testimonial/${slug}`} className="ml-2 mt-2  text-blue-400 hover:underline">{`${nextAuthUrl}/testimonial/${slug}`}</a>
           </div>
           <div className="mt-4 bg-yellow-50 border-l-4 border-yellow-500 text-yellow-800 p-3 rounded-lg dark:bg-gray-800 dark:border-yellow-400 dark:text-yellow-300" role="alert">
             <span className="font-semibold">Note:</span> Refresh the page to see changes.
@@ -128,11 +129,11 @@ export default function Space() {
       <div className="p-4 flex below-900:flex-col after-900:flex-row min-h-screen dark:bg-gray-900 " >
 
         {/* sidebar */}
-        <div id="logo-sidebar" className=" xl:ml-10 sticky	top-0 left-0 z-40 after-900:max-w-64 after-900:pt-20 transition-transform bg-white border-r border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+        <div id="logo-sidebar" className=" xl:ml-10 sticky	top-0 left-0 z-40 after-900:max-w-64 after-900:pt-20 transition-transform  border-r  dark:bg-gray-900 dark:border-gray-700">
           <div className="after-900:h-full overflow-hidden px-3 pb-4 overflow-y-auto dark:bg-gray-900">
             <ul className="flex justify-center items-center below-900:flex-row below-900:space-x-2 flex-col space-y-2 font-medium after-900:justify-normal after-900:items-start after-900:flex-wrap  after-900:space-x-0 after-900:space-y-2">
               <li>
-                <button onClick={() => settab("dashboard")} className={`flex  md:ml-3 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${tab === 'dashboard' ? 'bg-gray-700' : ''}`}>
+                <button onClick={() => settab("dashboard")} className={`flex  md:ml-3 items-center p-2  rounded-lg dark:text-white  dark:hover:bg-gray-700 group ${tab === 'dashboard' ? 'bg-gray-700' : ''}`}>
                   <svg className="w-7 h-7 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                     <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
                     <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
@@ -141,7 +142,7 @@ export default function Space() {
                 </button>
               </li>
               <li>
-                <button onClick={() => settab("liked")} className={`flex ml-3 md:ml-4 w-full h-10 items-center p-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${tab === 'liked' ? 'bg-gray-700' : ''}`}>
+                <button onClick={() => settab("liked")} className={`flex ml-3 md:ml-4 w-full h-10 items-center p-1  rounded-lg dark:text-white  dark:hover:bg-gray-700 group ${tab === 'liked' ? 'bg-gray-700' : ''}`}>
                   <svg className="flex-shrink-0  text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                   </svg>
@@ -149,7 +150,7 @@ export default function Space() {
                 </button>
               </li>
               <li>
-                <button onClick={() => settab("integrate")} className={`flex ml-4 w-full items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${tab === 'integrate' ? 'bg-gray-700' : ''}`}>
+                <button onClick={() => settab("integrate")} className={`flex ml-4 w-full items-center p-2 rounded-lg dark:text-white  dark:hover:bg-gray-700 group ${tab === 'integrate' ? 'bg-gray-700' : ''}`}>
                   <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                     <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                   </svg>
@@ -157,7 +158,7 @@ export default function Space() {
                 </button>
               </li>
               <li>
-                <button onClick={() => settab("widget")} className={`flex ml-4 w-full items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${tab === 'widget' ? 'bg-gray-700' : ''}`}>
+                <button onClick={() => settab("widget")} className={`flex ml-4 w-full items-center p-2  rounded-lg dark:text-white  dark:hover:bg-gray-700 group ${tab === 'widget' ? 'bg-gray-700' : ''}`}>
                   <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 121.92">
                     <path d="M6.6,121.92H47.51a6.56,6.56,0,0,0,2.83-.64,6.68,6.68,0,0,0,2.27-1.79,6.63,6.63,0,0,0,1.5-4.17V74.58A6.56,6.56,0,0,0,53.58,72,6.62,6.62,0,0,0,50,68.47,6.56,6.56,0,0,0,47.51,68H6.6a6.5,6.5,0,0,0-2.43.48,6.44,6.44,0,0,0-2.11,1.34A6.6,6.6,0,0,0,.55,72,6.3,6.3,0,0,0,0,74.58v40.74a6.54,6.54,0,0,0,.43,2.32,6.72,6.72,0,0,0,1.2,2l.26.27a6.88,6.88,0,0,0,2,1.39,6.71,6.71,0,0,0,2.73.6ZM59.3,28.44,86,1.77A6.19,6.19,0,0,1,88.22.34,6.24,6.24,0,0,1,90.87,0a6,6,0,0,1,3.69,1.74l26.55,26.55a6,6,0,0,1,1.33,2,6.13,6.13,0,0,1-1.33,6.58L94.45,63.58a6,6,0,0,1-1.9,1.27,5.92,5.92,0,0,1-2.24.5,6.11,6.11,0,0,1-2.41-.43,5.74,5.74,0,0,1-2.05-1.34L59.3,37a6.09,6.09,0,0,1-1.76-3.88V32.8a6.14,6.14,0,0,1,1.77-4.36ZM6.6,59.64H47.51a6.56,6.56,0,0,0,5.1-2.43,6.46,6.46,0,0,0,1.11-2,6.59,6.59,0,0,0,.39-2.21V12.31a6.61,6.61,0,0,0-.53-2.58A6.62,6.62,0,0,0,50,6.19a6.56,6.56,0,0,0-2.45-.48H6.6a6.5,6.5,0,0,0-2.43.48A6.44,6.44,0,0,0,2.06,7.53,6.6,6.6,0,0,0,.55,9.71,6.31,6.31,0,0,0,0,12.31V53.05a6.48,6.48,0,0,0,.43,2.31,6.6,6.6,0,0,0,1.2,2l.26.27a6.88,6.88,0,0,0,2,1.39,6.71,6.71,0,0,0,2.73.6Zm40.92-6.57H6.6l0,0V12.28c3.51,0,40.93,0,41,0,0,3.44,0,40.75,0,40.77Zm22.23,68.85h40.91a6.56,6.56,0,0,0,2.83-.64,6.68,6.68,0,0,0,2.27-1.79,6.63,6.63,0,0,0,1.5-4.17V74.58a6.56,6.56,0,0,0-.53-2.57,6.62,6.62,0,0,0-3.62-3.54,6.56,6.56,0,0,0-2.45-.48H69.75a6.75,6.75,0,0,0-4.54,1.82A6.6,6.6,0,0,0,63.7,72a6.3,6.3,0,0,0-.55,2.59v40.74a6.54,6.54,0,0,0,.43,2.32,6.72,6.72,0,0,0,1.2,2l.26.27a6.88,6.88,0,0,0,2,1.39,6.71,6.71,0,0,0,2.73.6Zm40.92-6.57H69.75l0,0,0-40.77c3.51,0,40.93,0,41,0,0,3.44,0,40.75,0,40.77Zm-63.15,0H6.6l0,0V74.56c3.51,0,40.93,0,41,0,0,3.44,0,40.75,0,40.77Z" />
                   </svg>

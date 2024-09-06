@@ -1,11 +1,13 @@
 export function Footer(){
+  const nextAuthUrl = process.env.NEXT_PUBLIC_NEXTAUTH_URL;
+
     return (
         // {/* <!-- Footer Section --> */}
         <footer className="bg-gray-900 text-white py-10">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
           {/* Logo Section */}
           <div className="flex items-center justify-center relative mb-6 md:mb-0">
-            <a href="http://localhost:3000" className="relative p-4">
+            <a href={nextAuthUrl} className="relative p-4">
               <span className="text-2xl font-bold tracking-wide text-white">Kudos Vault</span>
               {/* Creative Border Design */}
               <div className="absolute top-3 left-3 w-16 h-16 border-t-4 border-l-4 border-green-500 transform -translate-x-4 -translate-y-4 transition-transform duration-500 hover:scale-110"></div>

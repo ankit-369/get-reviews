@@ -10,24 +10,16 @@ type IntegrateProps = {
   classname?: string;
   slug: string
 };
-const reviews = [
-  {
-    title: 'Comfortable and minimal, just how I like it!',
-    description: 'This style relies more on neutral colors with little to no embellishment on furniture. Lighter fabrics, such as silk and cotton, are popular, as are lighter colors in wood and metal.',
-    images: ['https://via.placeholder.com/100', 'https://via.placeholder.com/100'],
-    author: 'James Schofield',
-    date: '23 June 2021',
-    rating: 4,
-    authorImage: 'https://via.placeholder.com/50'
-  }
-];
+
 
 
 
 export function Integrate({ classname, slug }: IntegrateProps) {
+  const nextAuthUrl = process.env.NEXT_PUBLIC_NEXTAUTH_URL;
+
   const code = `async function fetchReviews(): Promise<any[]> {
     try {
-        const res = await axios.post("http://localhost:3000/api/reviews", {
+        const res = await axios.post("${nextAuthUrl}/api/reviews", {
             name: "${slug}"
         });
         return res.data.plainReviewData;
@@ -130,62 +122,10 @@ export function Integrate({ classname, slug }: IntegrateProps) {
         </div>
       </div>
 
-      {/* <div className="p-6">
-      {reviews.map((review, index) => (
-        <ReviewComponent key={index} {...review} />
-      ))}
-    </div> */}
+     
 
     </div>
 
   );
 }
 
-
-const ReviewComponent = ({ title, description, images, author, date, rating, authorImage }: any) => {
-  return (
-    <div className="p-6 bg-white shadow-md rounded-md">
-      <h2 className="text-xl font-semibold">{title}</h2>
-      <p className="mt-2 text-gray-600">{description}</p>
-      <div className="mt-4 flex space-x-4">
-        {images.map((image: string | undefined, index: Key | null | undefined) => (
-            <Image
-            key={index}
-            src={image ? image : ""} 
-            // @ts-ignore
-            alt={`Review Image ${index + 1}`}
-            width={96} // Set width (w-24 is 96px)
-            height={96} // Set height (h-24 is 96px)
-            className="object-cover rounded-md"
-            />
-        ))}
-      </div>
-      <div className="mt-4 flex items-center">
-      <Image
-            src={authorImage ? authorImage : ""}
-            alt={author}
-            width={48} // Set width (w-24 is 96px)
-            height={48} // Set height (h-24 is 96px)
-            className="rounded-full mr-4"
-            />
-        {/* <img src={authorImage} alt={author} className="w-12 h-12 rounded-full mr-4" /> */}
-        <div>
-          <p className="text-gray-800 font-semibold">{author}</p>
-          <p className="text-gray-500 text-sm">{date}</p>
-        </div>
-        <div className="ml-auto flex items-center">
-          {Array.from({ length: 5 }, (_, index) => (
-            <svg
-              key={index}
-              className={`w-10 h-10 ${index < rating ? 'text-yellow-400' : 'text-gray-300'}`}
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.257 3.874a1 1 0 00.95.69h4.104c.969 0 1.372 1.24.588 1.81l-3.321 2.413a1 1 0 00-.364 1.118l1.257 3.874c.3.921-.755 1.688-1.54 1.118l-3.32-2.413a1 1 0 00-1.175 0l-3.32 2.413c-.784.57-1.838-.197-1.539-1.118l1.257-3.874a1 1 0 00-.364-1.118L2.704 9.3c-.783-.57-.38-1.81.588-1.81h4.104a1 1 0 00.95-.69l1.257-3.874z" />
-            </svg>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};

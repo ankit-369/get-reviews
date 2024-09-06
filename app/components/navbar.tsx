@@ -13,14 +13,15 @@ export default function Navbar() {
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
+  const nextAuthUrl = process.env.NEXT_PUBLIC_NEXTAUTH_URL;
 
   return (
 
 
-    <nav className="bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+    <nav className=" dark:bg-gray-900 dark:border-gray-700">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div className="flex items-center justify-center">
-          <a href="http://localhost:3000" className="relative p-4">
+          <a href={nextAuthUrl} className="relative p-4">
             <span className="text-2xl font-bold tracking-wide text-white">Kudos Vault</span>
             <div className="absolute top-3 left-3 w-16 h-16 border-t-4 border-l-4 border-red-500 transform -translate-x-4 -translate-y-4"></div>
             <div className="absolute bottom-3 right-3 w-16 h-16 border-b-4 border-r-4 border-red-500 transform translate-x-4 translate-y-4"></div>
@@ -45,11 +46,7 @@ export default function Navbar() {
                 onClick={toggleDropdown}
               >
                 <span className="sr-only">Open user menu</span>
-                {/* <img
-                    className="w-16 h-16 rounded-full"
-                    src={session.user?.image ? session.user.image : "/user/default.png"}
-                    alt="user photo"
-                  /> */}
+                
                 <Image
                   className="w-16 h-16 rounded-full"
                   src={session.user?.image ? session.user.image : "/user/default.png"}
@@ -67,12 +64,7 @@ export default function Navbar() {
                   </div>
                   <ul className="py-2" aria-labelledby="user-menu-button">
                     <li>
-                      {/* <button
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200"
-                          onClick={() => redirect("/user/dashboard")}
-                        >
-                          Dashboard
-                        </button> */}
+                      
                       <Redirect_btn classname="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200" value="Dashboard" redirect="/user/dashboard" />
 
                     </li>

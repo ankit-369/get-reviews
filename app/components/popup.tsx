@@ -206,7 +206,9 @@ const TestimonialModal: React.FC<TestimonialModalProps> = ({ slug, data, isOpen,
           />
           <div className="mb-8">
             <label className="block mb-3 text-blue-600">Attach Image(s)</label>
-            <input type="file" onChange={handleImageChange} multiple className="border border-gray-300 rounded-lg p-3 bg-gray-100" />
+            <input type="file" onChange={handleImageChange} multiple accept="image/*"
+    className="w-full border border-gray-300 rounded-lg p-3 bg-gray-100  dark:border-gray-600 "
+    />
           </div>
           {images && (
             <div className="flex flex-wrap gap-4 mb-8">
@@ -250,7 +252,9 @@ const TestimonialModal: React.FC<TestimonialModalProps> = ({ slug, data, isOpen,
           </div>
           <div className="mb-8">
             <label className="block mb-3 text-blue-600">Upload Your Photo</label>
-            <input type="file" onChange={handlePhotoChange} className="border border-gray-300 rounded-lg p-3 bg-gray-100" />
+            <input type="file" onChange={handlePhotoChange} accept="image/*"
+    className="w-full border border-gray-300 rounded-lg p-3 bg-gray-100  dark:border-gray-600 "
+    />
           </div>
           {photo && (
             <div className="relative mb-8">
