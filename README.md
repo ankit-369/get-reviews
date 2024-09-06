@@ -16,7 +16,7 @@ A powerful and easy-to-use platform for collecting, managing, and displaying cus
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/yourusername/get-reviews.git
-   cd testimonial-platform
+   cd get-reviews
 
 2. **Add .env file at root:**
 
