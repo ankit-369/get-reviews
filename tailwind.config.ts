@@ -17,6 +17,9 @@ const config: Config = {
         'below-900': { 'max': '899px' },
         'after-900': {'min' : '900px'},
       },
+      colors: {
+        'custom-gray': '#111827',
+      },
     },
   },
   plugins: [],

@@ -13,7 +13,7 @@ export function Widget_Demo({ theme }: param) {
                 "https://via.placeholder.com/150",
                 "https://via.placeholder.com/150"
             ],
-            "photo": "https://via.placeholder.com/150?text=A",
+            "photo": "/user/default.png",
             "star": 5,
             "createdAt": 1692854400
         },
@@ -23,7 +23,7 @@ export function Widget_Demo({ theme }: param) {
             "images": [
                 "https://via.placeholder.com/150"
             ],
-            "photo": "https://via.placeholder.com/150?text=B",
+            "photo": "/user/default.png",
             "star": 4,
             "createdAt": 1692940800
         },
@@ -31,7 +31,7 @@ export function Widget_Demo({ theme }: param) {
             "name": "Charlie Brown",
             "review": "Fast shipping and excellent customer service.",
             "images": [],
-            "photo": "https://via.placeholder.com/150?text=C",
+            "photo": "/user/default.png",
             "star": 4,
             "createdAt": 1693027200
         },
@@ -43,7 +43,7 @@ export function Widget_Demo({ theme }: param) {
                 "https://via.placeholder.com/150",
                 "https://via.placeholder.com/150"
             ],
-            "photo": "https://via.placeholder.com/150?text=D",
+            "photo": "/user/default.png",
             "star": 3,
             "createdAt": 1693113600
         },
@@ -53,7 +53,7 @@ export function Widget_Demo({ theme }: param) {
             "images": [
                 "https://via.placeholder.com/150"
             ],
-            "photo": "https://via.placeholder.com/150?text=E",
+            "photo": "/user/default.png",
             "star": 5,
             "createdAt": 1693200000
         },
@@ -61,7 +61,7 @@ export function Widget_Demo({ theme }: param) {
             "name": "Frank Wright",
             "review": "Good value for money, but could improve on delivery speed.",
             "images": [],
-            "photo": "https://via.placeholder.com/150?text=F",
+            "photo": "/user/default.png",
             "star": 3,
             "createdAt": 1693286400
         },
@@ -71,7 +71,7 @@ export function Widget_Demo({ theme }: param) {
             "images": [
                 "https://via.placeholder.com/150"
             ],
-            "photo": "https://via.placeholder.com/150?text=G",
+            "photo": "/user/default.png",
             "star": 4,
             "createdAt": 1693372800
         },
@@ -82,7 +82,7 @@ export function Widget_Demo({ theme }: param) {
                 "https://via.placeholder.com/150",
                 "https://via.placeholder.com/150"
             ],
-            "photo": "https://via.placeholder.com/150?text=H",
+            "photo": "/user/default.png",
             "star": 3,
             "createdAt": 1693459200
         },
@@ -94,7 +94,7 @@ export function Widget_Demo({ theme }: param) {
                 "https://via.placeholder.com/150",
                 "https://via.placeholder.com/150"
             ],
-            "photo": "https://via.placeholder.com/150?text=I",
+            "photo": "/user/default.png",
             "star": 5,
             "createdAt": 1693545600
         }

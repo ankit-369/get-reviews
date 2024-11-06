@@ -94,7 +94,7 @@ export function Space_card() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9 mt-10 w-full max-w-7xl">
                         {spacedata.map((data) => (
 
-                            <div key={data.id} className="w-full cursor-pointer max-w-sm rounded-lg shadow dark:bg-gray-800 dark:border-gray-200">
+                            <div key={data.id} className="w-full cursor-pointer max-w-sm rounded-lg shadow bg-gray-800 border-gray-200">
 
                                 <div onClick={() => router.push(`/user/space/${data.spaceName}`)} className="flex pt-6 flex-col items-center pb-10">
                                     <Image className="w-32 h-32 mb-3 rounded-full object-cover"

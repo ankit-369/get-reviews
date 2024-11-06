@@ -271,7 +271,7 @@ const temp_code = `const ReviewComponent = ({
         <div className={classname} >
 
             {/* Widget Demo */}
-            <div className="grid place-items-center bg-gray-100 dark:bg-gray-900">
+            <div className="grid place-items-center  bg-gray-900">
                 <button
                     onClick={toggleMode}
                     className={`px-4 py-2 rounded-full transition-colors duration-300 ${Mode

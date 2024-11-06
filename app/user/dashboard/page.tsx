@@ -32,7 +32,7 @@ export default function Dashboard() {
                     <p className="text-lg font-semibold text-green-400">Your Forms</p>
                 </div>
                 <div>
-                    <span className="inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-yellow-500 to-red-500 group-hover:from-yellow-600 group-hover:to-red-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800">
+                    <span className="inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium  rounded-lg group bg-gradient-to-br from-yellow-500 to-red-500 group-hover:from-yellow-600 group-hover:to-red-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800">
                         <Redirect_btn classname="px-5 py-2.5 transition-all ease-in duration-75 bg-gray-800 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0" value="Create New Form" redirect="createspace" />
                     </span>
                 </div>
